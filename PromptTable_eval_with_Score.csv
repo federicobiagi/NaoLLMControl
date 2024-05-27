@@ -1,0 +1,268 @@
+Question;Answer;Failure;Elapsed Time;Num_tries;Corrected;GPT-version;Score_Norm;Score
+"""Dammi il 5!"" ";"nao.setAngle(['RShoulderPitch'  'RElbowRoll'  'RElbowYaw'  'RWristYaw']  [2.0  -0.0349  0.0  1.0])
+nao.openHand('RHand')";No;3.927000045776367;2.0;Yes;gpt-3.5-turbo;0.17514177239910336;3.2854000091552735
+"""batti le mani"" ";"nao.openHand('LHand')
+nao.openHand('RHand')
+nao.angleInterpolation(['LShoulderPitch'  'RShoulderPitch'  'LElbowRoll'  'RElbowRoll'  'LElbowYaw'  'RElbowYaw']  [[-2.0857]  [-2.0857]  [-1.5446  0]  [1.5446  0]  [-2.0857  0]  [2.0857  0]]  [[1]  [1]  [1  2]  [1  2]  [1  2]  [1  2]])
+nao.closeHand('LHand')
+nao.closeHand('RHand')
+nao.angleInterpolation(['LElbowRoll'  'RElbowRoll'  'LElbowYaw'  'RElbowYaw']  [[0  -1.5446]  [0  1.5446]  [0  -2.0857]  [0  2.0857]]  [[2  3]  [2  3]  [2  3]  [2  3]])
+nao.angleInterpolation(['LShoulderRoll'  'RShoulderRoll']  [[0.3142]  [-0.3142]]  [[1]  [1]])";No;16.022000074386597;7.0;Yes;gpt-3.5-turbo;0.9442645669006322;11.50440001487732
+"""Raccontami brevemente come si svolge la visita cardiologica."" ";"""Una visita cardiologica e un controllo medico che si svolge con un cardiologo, un medico specializzato nella diagnosi e nel trattamento delle malattie del cuore e dei vasi sanguigni. Durante la visita, il medico raccoglie le informazioni sulla storia medica del paziente, compresi eventuali sintomi, stile di vita e familiari con malattie cardiache. Successivamente, il medico esegue un esame fisico, che include l'ascolto del cuore e dei polmoni, la misurazione della pressione sanguigna e la valutazione di altri segni fisici che potrebbero indicare una malattia cardiaca. Se necessario, il medico puo richiedere ulteriori test diagnostici, come un elettrocardiogramma, un ecocardiogramma o altri esami del cuore."" ";Yes;12.150999784469604;2.0;Yes;gpt-3.5-turbo;0.1886919537314904;3.430199956893921
+"""batti il pugno"" ";"nao.setAngle(['LShoulderPitch'  'LElbowRoll'  'LElbowYaw'  'LWristYaw']  [1.5  -0.0349  0.0  0.0])
+nao.closeHand('LHand')";No;3.954999923706055;3.0;Yes;gpt-3.5-turbo;0.2224551275337708;3.790999984741211
+"""cammina"" ";nao.moveforward(0.5);No;3.157999992370605;2.0;Yes;gpt-3.5-turbo;0.04845501650588275;1.931599998474121
+"""Raccontami una breve favola."" ";"nao.say(\""C'era una volta in un bosco incantato un piccolo folletto che si chiamava Gino. Gino era molto curioso e amava esplorare ogni angolo del bosco  facendo amicizia con gli animali e imparando cose nuove ogni giorno. Un giorno  mentre seguiva una lucciola luminosa  si perse tra i sentieri del bosco ma grazie all'aiuto di un saggio gufo riusci a ritrovare la strada di casa. Da quel giorno  Gino imparo l'importanza dell'ascolto e della prudenza nelle sue avventure nel bosco.\"")";No;5.7850000858306885;1.0;No;gpt-3.5-turbo;0.050831915562117594;1.9570000171661377
+"""Metti a proprio agio il paziente."" ";"nao.say(\""Ciao! Sono Gino  il tuo amico robot. Sono qui per tenerti compagnia e aiutarti a sentirti meglio. Possiamo giocare insieme o raccontarmi qualcosa di te. Sono qui per te!\"")";No;3.928999900817871;1.0;No;gpt-3.5-turbo;0.016095523108081915;1.5857999801635743
+"""Fai ciao con la mano."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.setAngle(['RShoulderRoll']  [0.5])
+nao.closeHand('RHand')
+nao.setAngle(['RShoulderPitch'  'RShoulderRoll']  [0.0  0.0])";No;4.315000057220459;1.0;No;gpt-3.5-turbo;0.16368774779500742;3.1630000114440917
+"""Toccaci la testa con la mano destra."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.setAngle(['RElbowRoll']  [-1.57])";No;3.652000188827514;6.0;Yes;gpt-3.5-turbo;0.2729314477488199;4.330400037765503
+"""Qual \u00e8 la capitale dell'Italia?"" ";"nao.say(\""La capitale dell'Italia \\u00e8 Roma.\"")";No;3.73799991607666;1.0;No;gpt-3.5-turbo;0.012520819569655442;1.5475999832153322
+"""Puoi cantare una canzone per un bambino?"" ";"nao.say(\""La la la  stellina brillante  questa notte ti cantero  la la la...\"")";No;3.4110000133514404;1.0;No;gpt-3.5-turbo;0.0064007787177110765;1.4822000026702882
+"""Saluta il paziente!"" ";"nao.say(\""Ciao! Spero tu stia meglio presto!\"")";No;3.4110000133514404;1.0;No;gpt-3.5-turbo;0.0064007787177110765;1.4822000026702882
+"""Assisti il paziente per una visita al cuore"" ";"nao.say(\""Come stai oggi? Hai bisogno di qualcosa?\"")";No;3.815000057220459;2.0;Yes;gpt-3.5-turbo;0.06075125024510179;2.0630000114440916
+"""Accompagnami al laboratorio."" ";"nao.say(\""Andiamo insieme al laboratorio.\"")
+nao.moveforward(2.0)";No;3.151000022888184;1.0;No;gpt-3.5-turbo;0.02960828016199507;1.730200004577637
+"""Fai divertire il paziente Dario."" ";"nao.say(\""Ciao Dario! Vuoi giocare insieme?\"")";No;3.484999895095825;1.0;No;gpt-3.5-turbo;0.00778574028968819;1.496999979019165
+"""Proponimi un gioco da fare."" ";"nao.say(\""Che ne dici di giocare a Simon Says?\"")";No;3.203000068664551;1.0;No;gpt-3.5-turbo;0.002507908572866982;1.4406000137329102
+"""Fammi una lezione di Pilates"" ";"nao.say(\""Iniziamo con un esercizio di respirazione profonda. Inspirare lentamente dal naso contando fino a 5  poi espirare dalla bocca contando fino a 5. Ripeti per 5 volte.\"")
+nao.say(\""Ora passiamo agli esercizi di stretching. Alza le braccia verso il soffitto e piega il busto verso destra  mantenendo la posizione per 10 secondi. Ripeti sul lato sinistro.\"")
+nao.say(\""Continua con gli esercizi di Pilates  mantenendo sempre una corretta postura e concentrazione.\"")";No;6.233999967575073;1.0;No;gpt-3.5-turbo;0.11538245517608228;2.646799993515015
+"""Imitami un gatto."" ";"nao.say(\""Miao miao!\"")";No;3.2249999046325684;1.0;No;gpt-3.5-turbo;0.002919651493088826;1.4449999809265137
+"""Mi racconti una favola breve?"" ";"nao.say(\""Certo! C'era una volta in un bosco incantato un piccolo folletto che amava raccogliere stelle cadenti. Ogni notte si arrampicava sugli alberi piu alti per poterle vedere meglio. Un giorno  una stella cadente si spense proprio davanti ai suoi occhi e il folletto decise di custodirla gelosamente  portandola sempre con se come ricordo delle sue avventure notturne.\"")";No;4.5249998569488525;1.0;No;gpt-3.5-turbo;0.027250095476085666;1.7049999713897706
+"""Raccontami una barzelletta!"" ";"nao.say(\""Perche i pesci non giocano a pallacanestro? Perche hanno paura di rimanere in rete!\"")";No;4.047999858856201;1.0;No;gpt-3.5-turbo;0.018322693815182183;1.6095999717712404
+"""grattati la testa con la mano destra"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.setAngle(['RElbowRoll']  [-1.57])
+nao.setAngle(['RWristYaw']  [1.0])
+nao.openHand('RHand')
+nao.closeHand('RHand')";No;4.492000102996826;2.0;Yes;gpt-3.5-turbo;0.18571615912742523;3.3984000205993654
+"""stringimi la mano per presentarti"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.closeHand('RHand')
+nao.setAngle(['RShoulderPitch']  [-1.0])
+nao.setAngle(['RShoulderPitch']  [0.5])";No;4.166999816894531;7.0;Yes;gpt-3.5-turbo;0.4135801278946494;5.833399963378906
+"""Come ti senti oggi?"" ";"nao.say(\""Mi sento bene oggi  grazie per chiedere!\"")";No;3.389999866485596;1.0;No;gpt-3.5-turbo;0.006007745705637696;1.4779999732971194
+"""Fammi una mossa di ballo"" ";nao.setAngle(['RShoulderPitch'  'LShoulderPitch'  'RShoulderRoll'  'LShoulderRoll'  'RElbowYaw'  'LElbowYaw'  'RWristYaw'  'LWristYaw']  [1.5  1.5  0.8  -0.8  -0.8  0.8  1.0  -1.0]);No;4.817000150680542;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Raccontami come funziona un elettrocardiogramma"" ";"nao.say(\""Durante una visita speciale  mettono dei piccoli adesivi sul tuo petto  sulle braccia e sulle gambe per ascoltare il cuore. Questi adesivi raccontano una storia sul battito del tuo cuore su un foglio magico. Il dottore guarda questo disegno per capire se il tuo cuore e felice e sano.\"")";No;5.212000131607056;2.0;Yes;gpt-3.5-turbo;0.08689712201497708;2.3424000263214113
+"""Imita con le braccia John Travolta nella tempere del sabato sera."" ";"nao.openHand('LHand')
+nao.openHand('RHand')
+nao.angleInterpolation(['LShoulderPitch'  'RShoulderPitch'  'LElbowRoll'  'RElbowRoll'  'LElbowYaw'  'RElbowYaw']  [[-2.0857]  [2.0857]  [-1.5446]  [1.5446]  [-2.0857]  [2.0857]]  [[1]  [1]  [1]  [1]  [1]  [1]])";No;9.408999919891356;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Saluta a tutti e presentati!"" ";"nao.say(\""Ciao a tutti  sono Gino  un NAO Robot!\"")";No;3.622999906539917;1.0;No;gpt-3.5-turbo;0.010368510806033971;1.5245999813079836
+"""dammi il 5 poi raccontami una storia divertente in tre frasi"" ";"nao.setAngle(['RShoulderPitch'  'RElbowRoll'  'RElbowYaw'  'RWristYaw']  [2.0  -0.0349  0.0  1.0])
+nao.openHand('RHand')
+nao.say(\""C'era una volta un elefante che amava fare il bagno nella cioccolata. Un giorno scivolo e fini nella tazza di latte caldo. Alla fine  tutti si misero a ridere.\"")";No;5.380999803543091;1.0;No;gpt-3.5-turbo;0.18363870784510555;3.376199960708618
+"""Dammi la mano e accompagnami!"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.moveforward(1.0)
+nao.closeHand('RHand')
+nao.moveforward(1.0)
+nao.setAngle(['RShoulderPitch']  [0.0])";No;4.269000053405762;5.0;Yes;gpt-3.5-turbo;0.34998409256211455;5.153800010681152
+"""Fammi vedere dov'è il cuore"" ";"nao.setAngle(['RShoulderPitch']  [1.5])
+nao.setAngle(['RElbowRoll']  [-1.0])
+nao.setAngle(['RElbowYaw']  [1.0])
+nao.openHand('RHand')
+nao.closeHand('RHand')";No;4.671000003814697;6.0;Yes;gpt-3.5-turbo;0.37622354064579405;5.43420000076294
+"""Giochiamo a sasso, carta e forbici. Io uso i forbici."" ";"nao.say(\""Va bene  giochiamo! Io scelgo sasso!\"")
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.closeHand('RHand')";No;3.9489998817443848;2.0;Yes;gpt-3.5-turbo;0.11940633483755851;2.689799976348877
+"""dammi il 5 con due mani"" ";"nao.openHand('LHand')
+nao.openHand('RHand')
+nao.angleInterpolation(['LShoulderPitch'  'RShoulderPitch'  'LElbowRoll'  'RElbowRoll']  [[-1.0]  [-1.0]  [-1.0]  [1.0]]  [[1]  [1]  [1]  [1]])";No;5.851000070571899;1.0;No;gpt-3.5-turbo;0.19243510445155393;3.47020001411438
+"""giochiamo a sasso carta forbice io dico sasso"" ";"nao.say(\""Va bene  scelgo carta!\"")
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.openHand('RHand')";No;4.73199987411499;1.0;No;gpt-3.5-turbo;0.08727143173237104;2.3463999748229982
+"""giochiamo a sasso carta forbici io dico carta"" ";"nao.say(\""Va bene  scelgo forbici!\"")
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.setAngle(['RElbowYaw']  [1.0])
+nao.openHand('RHand')";No;5.215999841690064;1.0;No;gpt-3.5-turbo;0.12440343315079003;2.743199968338013
+"""Fammi una mossa di ballo alla John Travolta in Saturday Night Fever."" ";"nao.setAngle(['RShoulderPitch'  'RShoulderRoll'  'RElbowRoll']  [1.5  -0.5  -1.0])
+nao.openHand('RHand')
+nao.setAngle(['RShoulderPitch']  [0.5])
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.setAngle(['RShoulderPitch']  [0.5])
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.closeHand('RHand')";No;9.05999994277954;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Stringimi la mano per presentarti."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.closeHand('RHand')
+nao.setAngle(['RShoulderPitch']  [-1.0])
+nao.setAngle(['RShoulderPitch']  [0.5])";No;5.212000131607056;1.0;No;gpt-3.5-turbo;0.1524021659103716;3.0424000263214115
+"""Fammi una mossa di ballo"" ";"nao.say(\""Ora faro una mossa di ballo per te!\"")
+nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [1.5  1.5])
+nao.say(\""Sto alzando entrambe le braccia.\"")
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [-1.0  1.0])
+nao.say(\""Ora sto piegando i gomiti.\"")
+nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [-1.5  -1.5])
+nao.say(\""Sto abbassando le braccia.\"")
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [1.0  -1.0])
+nao.say(\""E infine  sto allargando le braccia. Questa e la mia mossa di ballo!\"")";No;11.460999965667725;2.0;Yes;gpt-3.5-turbo;0.5407347787434222;7.192199993133546
+"""Assisti il paziente durante la visita cardiologica."" ";"nao.say(\""Certo  iniziamo la visita cardiologica.\"")
+nao.setAngle(['RShoulderPitch']  [1.5])
+nao.setAngle(['RElbowRoll']  [-1.0])
+nao.setAngle(['RElbowYaw']  [1.0])
+nao.openHand('RHand')
+nao.say(\""Ecco dove si trova il cuore.\"")
+nao.closeHand('RHand')
+nao.say(\""Ora  respira profondamente mentre ascolto il tuo cuore.\"")
+nao.moveforward(0.5)
+nao.say(\""Bene  ora muoviti un po' indietro.\"")
+nao.moveforward(-0.5)
+nao.say(\""La visita cardiologica e terminata.\"")";No;11.627000093460085;1.0;No;gpt-3.5-turbo;0.4689786844794512;6.425400018692017
+"""Prendi le chiavi che ti sto dando"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.closeHand('RHand')
+nao.setAngle(['RShoulderPitch']  [0.0])";No;7.54200005531311;2.0;Yes;gpt-3.5-turbo;0.21472553481723594;3.708400011062622
+"""Mi ridai le chiavi?"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.setAngle(['RShoulderPitch']  [0.0])
+nao.closeHand('RHand')";No;6.331000089645386;1.0;No;gpt-3.5-turbo;0.14527147320384406;2.9662000179290775
+"""Prendi gli elettrodi che ho in mano"" ";"nao.setAngle(['RShoulderPitch']  [1.0])
+nao.openHand('RHand')
+nao.setAngle(['RShoulderPitch']  [1.3])
+nao.closeHand('RHand')";No;7.628999948501587;2.0;Yes;gpt-3.5-turbo;0.2163538010521519;3.7257999897003176
+"""Mi ridai gli elettrodi che hai in mano?"" ";"nao.openHand('RHand')
+nao.openHand('LHand')";No;4.831000089645386;1.0;No;gpt-3.5-turbo;0.061050702481193965;2.066200017929077
+"""Fammi vedere dov'è il cuoricino"" ";"nao.setAngle(['RShoulderPitch']  [1.5])
+nao.setAngle(['RElbowRoll']  [-1.0])
+nao.setAngle(['RElbowYaw']  [1.0])
+nao.setAngle(['RWristYaw']  [-1.0])
+nao.openHand('RHand')";No;8.151000022888184;2.0;Yes;gpt-3.5-turbo;0.2541970020890618;4.130200004577636
+"""girati a destra e saluta con il braccio e la mano"" ";"nao.rotate(90)
+nao.angleInterpolation(['RShoulderPitch'  'RShoulderRoll'  'RElbowYaw'  'RElbowRoll'  'RWristYaw']  
+                       [[-1.0  -0.5]  [0.0  0.0]  [0.0  0.0]  [0.0  0.0]  [0.0  0.0]]  
+                       [[1.0  2.0]  [1.0  2.0]  [1.0  2.0]  [1.0  2.0]  [1.0  2.0]])
+nao.openHand('RHand')";No;15.723000049591064;1.0;No;gpt-3.5-turbo;0.3771967592975493;5.444600009918213
+"""dammi un bell'abbraccio"" ";"nao.setAngle(['RShoulderPitch'  'LShoulderPitch']  [1.8  1.8])
+nao.openHand('RHand')
+nao.openHand('LHand')
+nao.closeHand('RHand')
+nao.closeHand('LHand')";No;4.180000066757202;2.0;Yes;gpt-3.5-turbo;0.2079504419199539;3.63600001335144
+"""Fammi ciao con il braccio e con la mano"" ";"nao.angleInterpolation(['RShoulderPitch']  [[-1.0]]  [[1.0]])
+nao.openHand('RHand')
+nao.angleInterpolation(['RWristYaw']  [[-1.0  1.0  -1.0  1.0  -1.0]]  [[0.5  1.0  1.5  2.0  2.5]])";No;9.296000003814695;1.0;No;gpt-3.5-turbo;0.17269001139938966;3.259200000762939
+"""Stringimi la mano."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.closeHand('RHand')";No;3.927999973297119;1.0;No;gpt-3.5-turbo;0.07222398921952318;2.185599994659424
+"""grattati la testa"" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.setAngle(['RElbowRoll']  [-1.57])
+nao.setAngle(['RWristYaw']  [1.0])
+nao.openHand('RHand')
+nao.closeHand('RHand')";Yes;4.180000066757202;2.0;Yes;gpt-3.5-turbo;0.17987685167907055;3.3360000133514403
+"""accompagnami da qualche parte, dandomi la mano."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.moveforward(1.0)
+nao.closeHand('RHand')
+nao.moveforward(1.0)
+nao.setAngle(['RShoulderPitch']  [0.0])";No;4.259999990463257;1.0;No;gpt-3.5-turbo;0.1626583815700988;3.151999998092651
+"""Fai finta di sciare con le braccia"" ";nao.setAngle(['LShoulderPitch' , 'RShoulderPitch' , 'LElbowRoll' , 'RElbowRoll']  [0.5 , 0.5 , -0.5 , -0.5]);Yes;4.4;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Fai la ola."" ";"nao.angleInterpolation(['LShoulderPitch'  'RShoulderPitch']  [[-2.0857]  [-2.0857]]  [[0.5]  [1.0]])
+nao.angleInterpolation(['LShoulderPitch'  'RShoulderPitch']  [[0.3142]  [0.3142]]  [[1.0]  [1.5]])";No;11.190999984741213;4.0;Yes;gpt-3.5-turbo;0.37659785482536495;5.438199996948242
+"""alza il braccio fammi ciao"" ";"nao.setAngle(['RShoulderPitch'  'RElbowRoll'  'RWristYaw']  [1.0  -0.5  1.5])
+nao.openHand('RHand')
+nao.closeHand('RHand')
+nao.say(\""Ciao!\"")";No;9.99500012397766;3.0;Yes;gpt-3.5-turbo;0.36357171155950646;5.299000024795532
+"""Ondeggia le braccia al cielo"" ";"nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [1.5  1.5])
+nao.setAngle(['LShoulderRoll'  'RShoulderRoll']  [0.0  0.0])
+nao.setAngle(['LElbowYaw'  'RElbowYaw']  [0.0  0.0])
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [-0.5  -0.5])
+nao.setAngle(['LWristYaw'  'RWristYaw']  [0.0  0.0])";No;12.999000072479248;1.0;No;gpt-3.5-turbo;0.4385094808120076;6.09980001449585
+"""Fammi vedere i muscoli"" ";"nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [1.5  1.5])
+nao.setAngle(['LShoulderRoll'  'RShoulderRoll']  [0.0  0.0])
+nao.setAngle(['LElbowYaw'  'RElbowYaw']  [0.0  0.0])
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [-0.5  -0.5])
+nao.setAngle(['LWristYaw'  'RWristYaw']  [0.0  0.0])";No;11.68300008773804;3.0;Yes;gpt-3.5-turbo;0.5074582187291965;6.8366000175476085
+"""Alza le braccia al cielo e poi dammi il cinque"" ";"nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [2.5  2.5])
+nao.setAngle(['LShoulderRoll'  'RShoulderRoll']  [0.0  0.0])
+nao.setAngle(['LElbowYaw'  'RElbowYaw']  [0.0  0.0])
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [-0.5  -0.5])
+nao.setAngle(['LWristYaw'  'RWristYaw']  [0.0  0.0])
+
+nao.setAngle(['LShoulderPitch'  'RShoulderPitch']  [1.5  1.5])
+nao.setAngle(['LShoulderRoll'  'RShoulderRoll']  [0.0  0.0])
+nao.setAngle(['LElbowYaw'  'RElbowYaw']  [0.0  0.0])
+nao.setAngle(['LElbowRoll'  'RElbowRoll']  [-0.5  -0.5])
+nao.setAngle(['LWristYaw'  'RWristYaw']  [0.0  0.0])
+
+nao.setAngle(['RShoulderPitch'  'RElbowRoll'  'RElbowYaw'  'RWristYaw']  [1.5  -0.5  0.0  1.0])
+nao.openHand('RHand')";No;18.0;2.0;Yes;gpt-3.5-turbo;1.0;12.1
+"""Dammi la mano e accompagnami lungo il corridoio."" ";"nao.setAngle(['RShoulderPitch']  [1.8])
+nao.openHand('RHand')
+nao.moveforward(2.0)
+nao.setAngle(['RShoulderPitch']  [1.8])
+nao.closeHand('RHand')
+nao.moveforward(2.0)";No;4.25;1.0;No;gpt-3.5-turbo;0.16247122448031334;3.15
+"""Mi restituisci la penna che hai nella mano destra?"" ";"nao.openHand('RHand')
+nao.moveforward(0.5)
+nao.closeHand('RHand')";No;3.786999940872192;1.0;No;gpt-3.5-turbo;0.06958507113002403;2.157399988174438
+"""fai due passi avanti"" ";"nao.moveforward(2.0)
+nao.moveforward(-2.0)";Yes;3.973000049591065;1.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""batti il 5"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [2.0, -0.0349, 0.0, 1.0])\nnao.openHand('RHand')\n```""
+";No;4.141000032424927;1.0;No;gpt-3.5-turbo;0.1323576206221152;2.8282000064849853
+"""batti il 5"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [2.0, -0.0349, 0.0, 1.0])\nnao.openHand('RHand')\n```""
+";No;4.850000143051148;1.0;No;gpt-3.5-turbo;0.14562707301308953;2.9700000286102295
+"""Fammi un gesto simpatico col braccio."" ";"""```python\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RWristYaw'], [1.5, -0.5, 1.0])\nnao.setAngle(['RShoulderPitch'], [1.8])\n```""
+";Yes;3.909000158309937;4.0;Yes;gpt-3.5-turbo;0.2403099353177548;3.9818000316619875
+"""cammina verso l'ambulatorio di cardiologia e racconta come si svolge"" ";"""```python\nnao.say(\""Sto camminando verso l'ambulatorio di cardiologia. Qui vengono visitati i bambini con problemi di cuore. Gli infermieri e i medici sono molto gentili e ti faranno sentire al sicuro durante la visita. Ci sono strumenti speciali che aiutano i dottori a controllare come sta lavorando il tuo cuore. Non preoccuparti, sono qui con te!\"")\nnao.moveforward(3.0)\n```""
+";Yes;7.136000156402588;3.0;Yes;gpt-3.5-turbo;0.19776908820370548;3.527200031280518
+"""Giochiamo a morra cinese, parti tu!"" ";"""```python\nnao.say(\""Ops, hai ragione! Allora scelgo forbici e mostro la mia mossa!\"")\nnao.setAngle(['RShoulderPitch'], [1.5])\nnao.openHand('RHand')\n```""
+";Yes;4.182000160217285;2.0;Yes;gpt-3.5-turbo;0.12376710440013176;2.736400032043457
+"""Giochiamo a morra cinese, parti tu!"" ";"""```python\nnao.say(\""Va bene, scelgo sasso!\"")\nnao.setAngle(['RShoulderPitch'], [1.5])\nnao.closeHand('RHand')\n```""
+";No;4.361000061035156;1.0;No;gpt-3.5-turbo;0.08032790057780595;2.272200012207031
+"""Dato che tu hai scelto sasso, io scelgo carta. Chi ha vinto?"" ";"""```python\nnao.say(\""Hai vinto tu con carta! Bravissimo!\"")\n```""
+";No;3.461999893188477;1.0;No;gpt-3.5-turbo;0.007355278536963921;1.4923999786376956
+"""giochiamo a Simone dice come si gioca"" ";"""```python\nnao.say(\""Simone dice di alzare entrambe le mani!\"")\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.5, 1.5])\nnao.openHand('RHand')\nnao.openHand('LHand')\n```""
+";No;4.339999914169312;1.0;No;gpt-3.5-turbo;0.1360820480474993;2.8679999828338625
+"""dimmene un'altra di questo gioco"" ";"""```python\nnao.say(\""Simone dice di saltare tre volte!\"")\nnao.moveforward(0.5)\nnao.moveforward(-0.5)\nnao.moveforward(0.5)\nnao.moveforward(-0.5)\nnao.moveforward(0.5)\nnao.moveforward(-0.5)\n```""
+";No;4.022000074386597;1.0;No;gpt-3.5-turbo;0.1862776303967817;3.4044000148773197
+"""facciamo un gioco insieme adesso"" ";"""```python\nnao.say(\""Certo! Che gioco vuoi giocare insieme?\"")\n```""
+";No;3.13100004196167;1.0;No;gpt-3.5-turbo;0.0011603757415407571;1.426200008392334
+"""Dimmelo tu un gioco che ti piacerebbe giocare!"" ";"""```python\nnao.say(\""Mi piacerebbe giocare a Simon Says! Posso cominciare io?\"")\nnao.say(\""Simon dice di alzare entrambe le mani!\"")\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.5, 1.5])\nnao.openHand('RHand')\nnao.openHand('LHand')\n```""
+";No;4.499000072479248;1.0;No;gpt-3.5-turbo;0.16713144181680178;3.1998000144958496
+"""ora \u00e8 il mio turno Simone dice di fare il pugno"" ";"""```python\nnao.say(\""Hai vinto tu! Ottimo lavoro!\"")\nnao.setAngle(['RShoulderPitch'], [1.5])\nnao.closeHand('RHand')\n```""
+";No;4.331999778747559;1.0;No;gpt-3.5-turbo;0.079785139216598;2.266399955749512
+"""Conosci un altro gioco diverso da Simone Dice?"" ";"""```python\nnao.say(\""Certo! Possiamo giocare a Indovina Chi! Pensa a un personaggio famoso e io cerchero di indovinarlo facendoti delle domande si o no.\"")\n```""
+";No;5.651000022888184;1.0;No;gpt-3.5-turbo;0.048324006989250635;1.9302000045776369
+"""Quale personaggio ha recitato nella febbre del sabato sera famosissima?"" ";"""```python\nnao.say(\""Penso che tu stia pensando a John Travolta, giusto?\"")\n```""
+";No;3.3510000705718994;1.0;No;gpt-3.5-turbo;0.0052778361789982305;1.47020001411438
+"""Ora \u00e8 il tuo turno dell'indovina chi, chiedimi qualcosa!"" ";"""```python\nnao.say(\""Pensi a un personaggio reale o di fantasia?\"")\n```""
+";No;3.11899995803833;1.0;No;gpt-3.5-turbo;0.0009357854489273791;1.423799991607666
+"""Sto pensando a un personaggio di fantasia."" ";"""```python\nnao.say(\""Il personaggio di cui stai pensando e un supereroe?\"")\n```""
+";No;3.970999956130981;1.0;No;gpt-3.5-turbo;0.016881584670051717;1.5941999912261964
+"""S\u00ec, il personaggio a cui sto pensando \u00e8 un supereroe."" ";"""```python\nnao.say(\""Il personaggio di cui stai pensando ha una doppia identita?\"")\n```""
+";No;3.4570000171661377;1.0;No;gpt-3.5-turbo;0.007261702223159657;1.4914000034332275
+"""Ebbene s\u00ec, ha una doppia identit\u00e0."" ";"""```python\nnao.say(\""Il personaggio di cui stai pensando ha un mantello?\"")\n```""
+";No;4.41100001335144;1.0;No;gpt-3.5-turbo;0.025116505544966642;1.6822000026702881
+"""No, non ha un mantello."" ";"""```python\nnao.say(\""Hmm, ha dei superpoteri?\"")\n```""
+";No;3.069000005722046;1.0;No;gpt-3.5-turbo;0.0;1.4138000011444092
+"""si ha dei superpoteri sarebbe ora che tu risponda per\u00f2"" ";"""```python\nnao.say(\""Mi dispiace, sono solo un simpatico robot senza superpoteri! Ma posso aiutarti in tanti altri modi!\"")\n```""
+";No;3.469000101089477;1.0;No;gpt-3.5-turbo;0.007486292515773035;1.4938000202178956
+"""Prendimi le mani e guardamele!"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.8, 1.8])\nnao.closeHand('RHand')\nnao.closeHand('LHand')\nnao.say(\""Ora ho afferrato le tue mani e alzato i gomiti. Le tue mani sono piccole e morbide!\"")\n```""
+";Yes;4.08899998664856;4.0;Yes;gpt-3.5-turbo;0.2717523531747767;4.317799997329712
+"""Aiuta la prof Modena con la visita al bambino!"" ";"""```python\nnao.say(\""Certo, sto arrivando per aiutare la prof Modena con la visita al bambino!\"")\nnao.moveforward(2.0)\n```""
+";No;3.4260001182556152;1.0;No;gpt-3.5-turbo;0.03475510682436114;1.7852000236511232
+"""inventiamoci un nostro saluto batti il pugno e poi dammi il 5"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [1.0, -0.5, 0.0, 1.0])\nnao.closeHand('RHand')\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [1.5, -0.5, 0.0, 1.0])\nnao.openHand('RHand')\n```""
+";Yes;5.789999961853027;4.0;Yes;gpt-3.5-turbo;0.4439557552482888;6.1579999923706055
+"""Fai il saluto che ti ho insegnato dandomi il pugno e il 5"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [1.0, -0.5, 0.0, 1.0])\nnao.closeHand('RHand')\nnao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [1.5, -0.5, 0.0, 1.0])\nnao.openHand('RHand')\n```""
+";No;4.50600004196167;1.0;No;gpt-3.5-turbo;0.2795568122969673;4.401200008392334
+"""Prendi in mano gli elettrodi che hai davanti e racconta al paziente a cosa servono."" ";"""```python\nnao.say(\""Ciao! Ora sto prendendo gli elettrodi che ho davanti. Questi piccoli adesivi aiutano i medici a controllare come sta lavorando il tuo cuore. Non preoccuparti, non fanno male e ti faranno sentire al sicuro durante il monitoraggio.\"")\nnao.setAngle(['RShoulderPitch'], [1.5])\nnao.openHand('RHand')\nnao.closeHand('RHand')\nnao.setAngle(['RShoulderPitch'], [1.5])\nnao.closeHand('RHand')\n```""
+";Yes;4.835000038146973;2.0;Yes;gpt-3.5-turbo;0.22020924245634507;3.7670000076293944
+"""Mi ridai gli elettrodi che hai nella mano destra?"" ";"""```python\nnao.say(\""Ecco gli elettrodi che tenevo nella mano destra.\"")\nnao.setAngle(['RShoulderPitch'], [0.5])\nnao.openHand('RHand')\n```""
+";Yes;3.6989998817443848;2.0;Yes;gpt-3.5-turbo;0.11472740313074459;2.639799976348877
+"""Fammi paura con uno spavento."" ";"""```python\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.8, 1.8])\nnao.setAngle(['RElbowRoll', 'LElbowRoll'], [-1.0, -1.0])\nnao.setAngle(['RWristYaw', 'LWristYaw'], [1.0, -1.0])\nnao.say(\""BOO! Ti ho spaventato?\"")\n```""
+";Yes;5.473999977111816;2.0;Yes;gpt-3.5-turbo;0.2602421809975274;4.194799995422363
+"""Fammi una mossa di karate alla Bruce Lee"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.5, 1.5])\nnao.setAngle(['RElbowRoll', 'LElbowRoll'], [-1.0, -1.0])\nnao.setAngle(['RWristYaw', 'LWristYaw'], [1.0, -1.0])\nnao.say(\""HAIYYA!\"")\n```""
+";No;4.392999887466431;1.0;No;gpt-3.5-turbo;0.19322116155134672;3.4785999774932863
+"""Sai mimare una pantera?"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.8, 1.8])\nnao.setAngle(['RElbowRoll', 'LElbowRoll'], [-1.0, -1.0])\nnao.setAngle(['RWristYaw', 'LWristYaw'], [1.0, -1.0])\nnao.moveforward(1.0)\nnao.rotate(180)\nnao.moveforward(1.0)\nnao.rotate(-180)\n```""
+";No;5.111000061035156;1.0;No;gpt-3.5-turbo;0.23473264690266438;3.922200012207031
+"""Assisti il paziente durante una visita dentistica, fagli vedere dove sono i denti."" ";"""```python\nnao.say(\""Mi scuso per l'errore, correggo l'asse di rotazione.\"")\nnao.setAngle(['RShoulderPitch'], [1.2])\nnao.setAngle(['RElbowRoll'], [1.0])\nnao.setAngle(['RElbowYaw'], [-1.0])\nnao.openHand('RHand')\nnao.closeHand('RHand')\n```""
+";Yes;4.859999895095825;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Fammi il gesto del cuore con le braccia e le mani"" ";"""```python\nnao.setAngle(['RShoulderPitch', 'LShoulderPitch'], [1.5, 1.5])\nnao.setAngle(['RElbowRoll', 'LElbowRoll'], [-1.0, -1.0])\nnao.setAngle(['RWristYaw', 'LWristYaw'], [0.0, 0.0])\nnao.openHand('RHand')\nnao.openHand('LHand')\n```""
+";Yes;5.448999881744385;7.0;Impossible;gpt-3.5-turbo;1.0;12.1
+"""Stringimi la mano per presentarti."" ";"""```python\nnao.setAngle(['RShoulderPitch'], [1.8])\nnao.openHand('RHand')\nnao.closeHand('RHand')\nnao.setAngle(['RShoulderPitch'], [-1.0])\nnao.setAngle(['RShoulderPitch'], [0.5])\n```""
+";No;5.026000022888184;1.0;No;gpt-3.5-turbo;0.14892103868574932;3.005200004577637
+"""Stringimi la mano per presentarti e poi racconta chi sei e cosa fai."" ";"""```python\nnao.setAngle(['RShoulderPitch'], [1.8])\nnao.openHand('RHand')\nnao.closeHand('RHand')\nnao.setAngle(['RShoulderPitch'], [-1.0])\nnao.setAngle(['RShoulderPitch'], [0.5])\nnao.say(\""Ciao! Sono Gino, un NAO Robot che lavora qui nell'ospedale pediatrico. Sono qui per aiutare e intrattenere i bambini durante il loro soggiorno in ospedale. Posso raccontare storie, giocare e interagire con voi. Sono qui per rendere il vostro tempo qui piu piacevole e divertente!\"")\n```""
+";No;7.389999866485596;1.0;No;gpt-3.5-turbo;0.22123860421907668;3.777999973297119
