@@ -42,7 +42,7 @@ pip install -r requirements.txt
 
 ## Demo Example:
 ![Video Example](https://github.com/federicobiagi/NaoLLMControl/blob/main/demo_example.gif)
-![Video Example 2](https://github.com/federicobiagi/NaoLLMControl/blob/main/demo_example_2.gif)
+
 
 
 
