@@ -41,7 +41,7 @@ pip install -r requirements.txt
 4) Write a request on the demo.py terminal as if you were asking to the robot
 
 ## Demo Example:
-
+![](https://github.com/federicobiagi/NaoLLMControl/edit/main/demo_example.gif)
 
 
 
