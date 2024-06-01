@@ -46,6 +46,17 @@ pip install -r requirements.txt
 
 ## Video Demonstration
 
+
+https://github.com/federicobiagi/NaoLLMControl/assets/51241924/2623b33b-8624-4640-9a41-1a0919c03c7e
+
+
+
+https://github.com/federicobiagi/NaoLLMControl/assets/51241924/8b7dd590-3ebb-4ac0-9e31-39e5201ceac3
+
+
+
+
+
 ## Note:
 Sentences pronounced by the robot and users' requests saved on the .csv file are issued in Italian language as the research project has been pursued in "Policlinico di Modena" Hospital in Italy.
 
