@@ -215,18 +215,15 @@ class Server(object):
         sysprompt = Path("./system_prompts/initial_setup.txt").read_text(encoding='utf-8')
         sysprompt = "You are a NAO Robot named {0} that works in the pediatric department of an hospital and you must always interact with children, ".format(self.robot_name) + sysprompt
         
-        initial_prompt = Path("./prompts/initial_setup.txt").read_text(encoding='utf-8')
-        initial_prompt = sysprompt + '\n' + initial_prompt
-        
         self.chat_history = [
         {
             "role" : "system",  #this role modifies the behavior of the GPT instance and injects the teachings of the Instruction Prompt
-            "content" : initial_prompt
+            "content" : sysprompt
         }
         ]
 
         self.ask('Ciao {}!'.format(self.robot_name))  #Instruction Prompt provided to ChatGPT, together with an initial greet
-        print("Benvenuto nel ChatBot Nao!")
+        print("Welcome to ChatBot NAO!")
 
 
     def whisperTranscribe(self):
