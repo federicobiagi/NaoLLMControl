@@ -131,7 +131,6 @@ class Server(object):
                 "role":"user",
                 "content" : prompt
             } )
-        #completion = openai.ChatCompletion.create(  #old version
         #the message inserted in the request contains the whole conversation up the i-th timestep, this is done to mantain dialog context
         
         num_input_tokens = self.num_tokens_from_messages(self.chat_history, 'gpt-4o-mini')
@@ -267,7 +266,7 @@ class Server(object):
             )
         
         print("Length of just chatting history:")
-        num_input_tokens = self.num_tokens_from_messages(self.justchatting_history, 'gpt-4o-mini')
+        num_input_tokens = self.num_tokens_from_messages(self.justchatting_history, 'gpt-3.5-turbo')
         print(num_input_tokens)
         if num_input_tokens >= 16300:  #If the user already made 6 chat requests (3 components in the chat list per request), then the older requests are deleted to avoid overload
             self.justchatting_history = self.justchatting_history[-8:] #keep only the last 2 requests + the latest request that still waits for an answer
