@@ -1,5 +1,3 @@
-#!C:\\ProgramData\\Anaconda3\\python.exe
-
 # coding=utf-8
 #Demo script to show the output ChatGPT is able to produce based on the provided Instruction Prompt
 #Produced code must then be processed by the Nao Wrapper in the naorobot_wrapper.py script so that Nao Robot may execute the actions
@@ -14,24 +12,34 @@ base_url='http://localhost:8080/gpt'
 gptmanagement_url = 'http://localhost:8080/gptmanagement'
 
 def extract_python_code(content):
-    #code_block_regex = re.compile(r"```(.*?)```",re.DOTALL)  #take the python code part in the ChatGPT response
-    #code_blocks = code_block_regex.findall(content) 
     code_blocks = content
     if code_blocks:
-        #full_code = "\n".join(code_blocks) #aggregate the sentences and separate them with '\n'
-        #full_code = full_code[8:]  #take the code piece from the 'python' word, till the end of the response 
         code_blocks = code_blocks.replace("\\n", "\n")
         code_blocks = code_blocks.replace("\"","")
+        code_blocks = code_blocks.replace("<satisfied>","")
+        code_blocks = code_blocks.replace("<dissatisfied>","")
+        code_blocks = code_blocks.replace("```python","")
+        code_blocks = code_blocks.replace("```","")
         open('./temp/code.txt','w').write(code_blocks)
    
         return code_blocks.rstrip()
     else:
         return None
 
+def extract_sentiment(command):
+    pattern = r'<(.*?)>'
+    sentiment = re.search(pattern,command)
+    if sentiment:
+        return sentiment.group(1)
+    else:
+        return None #no match found
+
 lastcorrect = True
 question_with_wrong_execution = []
 r = requests.post(base_url+'/gino')
 print('Response code:%d'%r.status_code)
+
+print("Ready to communicate with Server")
 
 print("Do you want to activate the Error Correction algorithm? (y/n)")
 error_corr_mode = input("-> ")
@@ -43,19 +51,29 @@ if error_corr_mode == 'y':
         if question == 'exit':
             break
         r = {'question':question, 'response': None}
-        response=requests.get(base_url+'/gino',params={'prompt':json.dumps(r)})
-        answer = response.content.decode()
-        print('Gpt Response:\n'+ answer)
-        print('Response code:%d'%response.status_code)  
-        codeblocks = extract_python_code(answer)
+        response=requests.get(base_url + '/gino',params={'prompt':json.dumps(r)})
+        print('Response code:%d'%response.status_code)
 
-        print("nao.say(\"Did I do well?\")")
-        correct = input("Answer 'yes' or 'no' -> ")
+        response = response.content.decode()
+        code = extract_python_code(response)
+        sentiment = extract_sentiment(response)
+        if sentiment == 'satisfied':
+            response = response.replace('<satisfied>',"")
+            last_question = question
+            retrieved_okay = 1
+        if sentiment == 'dissatisfied':
+            print("nao.say(\"I'm sorry, I'll try to correct myself\")")
+            question_with_wrong_execution.append(last_question)
+            response = response.replace('<dissatisfied>',"")
+            retrieved_okay = 0
+        print('Gpt Response:\n'+ response)
+            
 
-        if correct == 'yes' or correct == 'Yes':
+        if retrieved_okay == 1:
+            #print("Gino did right")
             if lastcorrect == False:
                 print("nao.say(\"All right!\")")
-                f = open('./system_prompts/initial_setup.txt',"a")
+                f = open('./prompts/initial_setup.txt',"a")
                 f.write('\n\n')
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
                 f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
@@ -72,10 +90,10 @@ if error_corr_mode == 'y':
                     print("speech.say(\"Thanks for the correction!\")")
                     lastcorrect = True
             else:
-                print("nao.say(\"All right! Very well\")")
+                pass
 
-        if correct == 'no' or correct == 'No':
-            print("nao.say(\"I'm sorry, could you please correct me?\")")
+        if retrieved_okay == 0:
+            #print("nao.say(\"I'm sorry, I'll try to correct myself\")")
             lastcorrect = False
             question_with_wrong_execution.append(question)
 else:
@@ -85,10 +103,10 @@ else:
         if question == 'exit':
             break
         r = {'question':question, 'response': None}
-        response=requests.get(base_url+'/gino',params={'prompt':json.dumps(r)})
-        answer = response.content.decode()
-        print('Gpt Response:\n'+ answer)
+        response=requests.get(base_url + '/gino',params={'prompt':json.dumps(r)})
         print('Response code:%d'%response.status_code)
+        response = response.content.decode().replace
+        print('Gpt Response:\n'+ response.content.decode())
     
 
 
