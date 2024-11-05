@@ -73,7 +73,7 @@ if error_corr_mode == 'y':
             #print("Gino did right")
             if lastcorrect == False:
                 print("nao.say(\"All right!\")")
-                f = open('./prompts/initial_setup.txt',"a")
+                f = open('./system_prompts/initial_setup.txt',"a")
                 f.write('\n\n')
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
                 f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
