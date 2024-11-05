@@ -13,9 +13,9 @@ from flask_restful import Resource,Api
 import json
 import threading
 import pandas as pd
-import speech_recognition as sr
-import speech_rec_engine
-from speech_rec_engine import SpeechRecEngine
+#import speech_recognition as sr
+#import speech_rec_engine
+#from speech_rec_engine import SpeechRecEngine
 
 ##### MAIN SCRIPT TO RUN THE LOCAL SERVER #########
 
@@ -150,7 +150,7 @@ class GPTServerManagement(Resource):  #resource used to reload ChatGPT with the 
 
 
 ########## Resources dedicated to the speech recognition part to enable interaction with NAO Robot via external wireless microphone, the section is not part of the research paper###########
-
+"""
 class SpeechRecForChatting(Resource):
     #app.run(host='127.0.0.1',port=8080,debug=True)
     def post(self,robot_name):  #method used to provide a request to ChatPT and retrieve the answer
@@ -175,21 +175,8 @@ class SpeechRecForControl(Resource):
             print(e)
             return 500
     
-    """
-    def get(self, robot_name):
-        response = None
-        while(1):  #try until the response is ready
-            if os.path.isfile('./temp/response.txt'):  #if the file exists
-                try:
-                    print("Retrieving GPT response...")
-                    with open('./temp/response.txt', 'r') as file:
-                        response = file.read()
-                    os.remove('./temp/response.txt')  #remove the file, it will be created again once a new response is needed
-                    return response, 200
-                except Exception as e:
-                    print(e)
-                    return 500
-    """
+       return 500
+"""
 ########################################################################################################################################
 
 api.add_resource(PromptResource,f'{basePath}/<string:robot_name>')
@@ -198,8 +185,9 @@ api.add_resource(ChattingResource,f'{chatPath}/<string:robot_name>')
 api.add_resource(YoutubeResource,f'{ytPath}/<string:search>')
 api.add_resource(GPTInfoResource,f'{gptinfoPath}')
 api.add_resource(GPTServerManagement,f'{gptmanagementPath}')
-api.add_resource(SpeechRecForChatting,f'{speechrecchattingPath}/<string:robot_name>')
-api.add_resource(SpeechRecForControl, f'{speechreccontrolPath}/<string:robot_name>')
+
+#api.add_resource(SpeechRecForChatting,f'{speechrecchattingPath}/<string:robot_name>')
+#api.add_resource(SpeechRecForControl, f'{speechreccontrolPath}/<string:robot_name>')
 
 if __name__=='__main__': #the server runs locally
     app.run(host='127.0.0.1',port=8080,debug=True)
