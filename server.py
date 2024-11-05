@@ -220,7 +220,7 @@ class Server(object):
         }
         ]
 
-        self.ask('Ciao {}!'.format(self.robot_name))  #Instruction Prompt provided to ChatGPT, together with an initial greet
+        self.ask('Hi {}!'.format(self.robot_name))  #Instruction Prompt provided to ChatGPT, together with an initial greet
         print("Welcome to ChatBot NAO!")
 
 
