@@ -12,8 +12,6 @@ import pandas as pd
 from openai import OpenAI
 import prompt_manager
 from prompt_manager import PromptManager
-import gpt_fine_tuning
-from gpt_fine_tuning import FineTuner
 import tiktoken
 import threading
 from threading import Thread
