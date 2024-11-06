@@ -44,15 +44,6 @@ pip install -r requirements.txt
 ![Video Example](https://github.com/federicobiagi/NaoLLMControl/blob/main/demo_example.gif)
 ![Video Example2](https://github.com/federicobiagi/NaoLLMControl/blob/main/demo_example_2.gif)
 
-## Video Demonstration
-
-
-https://github.com/federicobiagi/NaoLLMControl/assets/51241924/2623b33b-8624-4640-9a41-1a0919c03c7e
-
-
-
-https://github.com/federicobiagi/NaoLLMControl/assets/51241924/8b7dd590-3ebb-4ac0-9e31-39e5201ceac3
-
 
 
 
