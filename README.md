@@ -46,6 +46,11 @@ In the following video, a demo of the Error Correction algorithm is shown. In th
 https://github.com/user-attachments/assets/3f5d3704-3057-4798-ad5c-a874f62c7057
 
 ## Video Example:
+The first video shows a doctor asking a request to the robot which was not previously mapped on the system. The framework provides actions to satisfy the doctor's request and the robot is correctly able to execute them.
+
+https://github.com/user-attachments/assets/aed689d4-c6fa-4d63-92b9-7d93558749b2
+
+The second video shows the doctor correcting the robot's mistake.
 https://github.com/user-attachments/assets/a9175313-85df-4866-97d4-13691b234095
 
 
