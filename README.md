@@ -45,6 +45,9 @@ In the following video, a demo of the Error Correction algorithm is shown. In th
 
 https://github.com/user-attachments/assets/3f5d3704-3057-4798-ad5c-a874f62c7057
 
+## Video Example:
+https://github.com/user-attachments/assets/a9175313-85df-4866-97d4-13691b234095
+
 
 
 
