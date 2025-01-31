@@ -54,7 +54,11 @@ The second video shows the doctor correcting the robot's mistake.
 
 https://github.com/user-attachments/assets/a9175313-85df-4866-97d4-13691b234095
 
-
+## Task Completion Output Examples
+This table provides some interesting examples of the code produced by ChatGPT for the task completion.
+| Request | #1    | #2    |
+| :---:   | :---: | :---: |
+| Seconds | 301   | 283   |
 
 
 
