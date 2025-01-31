@@ -54,23 +54,21 @@ The second video shows the doctor correcting the robot's mistake.
 
 https://github.com/user-attachments/assets/a9175313-85df-4866-97d4-13691b234095
 
-## Task Completion Output Examples
-This table provides some interesting examples of the code produced by ChatGPT for the task completion, along with the difficulty score.
-| Request | Show me where the heart is  | Give me your hand and guide me along the corridor  |
-| :---:   | :---: | :---: |
-| Code | nao.setAngle([’RShoulderPitch’],[1.5])
-nao.setAngle([’RElbowRoll’],[-1.0])
-nao.setAngle([’RElbowYaw’],[1.0])
-nao.openHand(’RHand’)
-nao.closeHand(’RHand’  | 5.93   |
-| Score |
-
-
-
-
-
 ## Note:
 Sentences pronounced by the robot and users' requests saved on the .csv file are issued in Italian language as the research project has been pursued in "Policlinico di Modena" Hospital in Italy.
+
+
+## Task Completion Output Examples
+This table provides some interesting examples of the code produced by ChatGPT for the task completion, along with the difficulty score.
+
+| Richiesta | Codice | Punteggio |
+|---|---|---|
+| Show me where the heart is | `nao.setAngle(['RShoulderPitch'], [1.5])<br>nao.setAngle(['RElbowRoll'], [-1.0])<br>nao.setAngle(['RElbowYaw'], [1.0])<br>nao.openHand('RHand')<br>nao.closeHand('RHand')` | 5.93 |
+| Let's play rock paper scissor, I play scissor | `nao.say("Okay! Io choose rock!")<br>nao.setAngle(['RShoulderPitch'], [1.5])<br>nao.closeHand('RHand')` | 2.7 |
+| Give me your hand and guide me along the corridor | `nao.setAngle(['RShoulderPitch'], [1.8])<br>nao.openHand('RHand')<br>nao.moveForward(2.0)<br>nao.setAngle(['RShoulderPitch'], [1.8])<br>nao.closeHand('RHand')<br>nao.moveForward(2.0)<br>nao.say("Of course, let's start the visit")` | 3.3 |
+| Assist the patient during his cardiology exam | `nao.setAngle(['RShoulderPitch'], [1.5])<br>nao.setAngle(['RElbowRoll'], [-1.0])<br>nao.setAngle(['RElbowYaw'], [1.0])<br>nao.openHand('RHand')<br>nao.say("Here is where the heart is")<br>nao.closeHand('RHand')<br>nao.say("Now breath calmly while we check your heart")<br>nao.moveForward(0.5)<br>nao.say("Verty good, now move back a little")<br>nao.moveForward(-0.5)<br>nao.say("The visit has ended!")` | 6.42 |
+| Give me a High Five!| `nao.setAngle(['RElbowRoll'], [-0.0349])<br>nao.setAngle(['RShoulderPitch'], [2.0])<br>nao.setAngle(['RElbowRoll'], [0.0])<br>nao.setAngle(['RWristYaw'], [1.0])<br>nao.openHand('RHand')<br>nao.setAngle(['RShoulderPitch'], [1.8])` | 3.2 |
+| Scratch your head | `nao.setAngle(['RElbowRoll'], [-1.57])<br>nao.setAngle(['RWristYaw'], [1.0])<br>nao.openHand('RHand')<br>nao.closeHand('RHand')` | 3.9 |
 
 
 
