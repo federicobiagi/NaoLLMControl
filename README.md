@@ -55,10 +55,15 @@ The second video shows the doctor correcting the robot's mistake.
 https://github.com/user-attachments/assets/a9175313-85df-4866-97d4-13691b234095
 
 ## Task Completion Output Examples
-This table provides some interesting examples of the code produced by ChatGPT for the task completion.
-| Request | #1    | #2    |
+This table provides some interesting examples of the code produced by ChatGPT for the task completion, along with the difficulty score.
+| Request | Show me where the heart is  | Give me your hand and guide me along the corridor  |
 | :---:   | :---: | :---: |
-| Seconds | 301   | 283   |
+| Code | nao.setAngle([’RShoulderPitch’],[1.5])
+nao.setAngle([’RElbowRoll’],[-1.0])
+nao.setAngle([’RElbowYaw’],[1.0])
+nao.openHand(’RHand’)
+nao.closeHand(’RHand’  | 5.93   |
+| Score |
 
 
 
