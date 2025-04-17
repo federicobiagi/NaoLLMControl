@@ -1,6 +1,5 @@
 # coding=utf-8
-
-# This script handles the Error Correction pipeline
+#ERROR CORRECTION PIPELINE SCRIPT
 
 from naoqi import ALProxy
 from naoqi import ALBroker
@@ -29,7 +28,7 @@ import nao_file_transfer
 from nao_file_transfer import NAOFileTransfer
 
 class GPT():
-    #Initialize all the modules to control the Nao Robot
+    #Initialize all the required modules
     def __init__(self,robot):
         
         parent_folder = dirname(dirname(abspath(__file__)))
@@ -52,6 +51,7 @@ class GPT():
         self.lastcorrect = True
         self.questions_with_wrong_execution = []
         self.speechStopped = False
+
         self.path = None
         self.nao = None
         self.code = None
@@ -63,20 +63,16 @@ class GPT():
         vocal_command = VocalCommands()
         print("Vocal Commands initialized")
 
-        #Local Server endpoints
         self.base_url = 'http://localhost:8080/gpt'
         self.whisper_url = 'http://localhost:8080/whisper'
         self.gptmanagement_url = 'http://localhost:8080/gptmanagement'
 
-
-        
-        #Deactivate the autonomous life of the robot to prevent the robot from listening to its own voice during ChatGPT usage
         try:
             if self.autonomousLife.getState() != "disabled":
                 self.autonomousLife.setState("disabled")
         except:
             pass
-
+ 
         if (self.AL.isEnabled() is True):
             self.AL.setEnabled(False)
             print("Basic Awareness disabled")
@@ -86,8 +82,7 @@ class GPT():
 
         self.posture.post.goToPosture("Stand",0.5)
 
-
-        #Define variables in the robot's memory 
+        #self.dialog.setLanguage("Italian")
         self.memory.insertData("listen","0")
         self.memory.insertData("stop","0")
         self.memory.insertData("block","0")
@@ -109,11 +104,11 @@ class GPT():
         except:
             print("Okay")
 
-        #The keyword to trigger the robot listening is defined as: gino.local -> keyword = gino
+        
         selected_robot = self.robot.split('.')
         print("Selected robot: "+ selected_robot[0])
 
-        #Ask the Local Server to initialize the ChatGPT service with the current robot's name
+        #Initialize GPT instance with the correct robot name
         self.url = self.base_url+'/{0}'.format(selected_robot[0])
         r = requests.post(self.base_url+'/{0}'.format(selected_robot[0]))
         print('Response code:%d'%r.status_code)
@@ -126,9 +121,9 @@ class GPT():
             self.gpt_model = self.gpt_model.replace('\n','')
             print("Selected GPT model: {}".format(self.gpt_model))
 
-
-        #Activate the robot's dialog service
+       
         self.topicContent = "topic: ~Chat()\n language: iti\nconcept: (trigger) [{0} ascoltami ascolta]\nconcept: (stop) [ferma fermati]\nconcept: (block) [stop]\nconcept: (yes) [si Si sì Sì]\nconcept: (no) [no No]\nu: (~trigger)  $listen=1\nu: (~stop) Okay $stop=1\nu: (~block) Okay $block=1\nu: (~yes) Okay! $okay=1 \nu: (~no) Mi dispiace, ho sbagliato! $error=1".format(selected_robot[0])
+
 
         try:
             self.dialog.unsubscribe("dialog_chat")
@@ -144,11 +139,11 @@ class GPT():
         print(self.dialog.getAllLoadedTopics())
 
 
-        #Nao is ready
+        #NAO is ready
         self.speech.say("Sono pronto")
 
 
-    #When ChatGPT service stops, deallocate the dialog topic and reactivate Autonomous Life on the robot
+   
     def stop(self):
         self.speech.stopAll()
         self.AL.setEnabled(True)
@@ -164,13 +159,13 @@ class GPT():
    
     
     def extract_python_code(self,content):
-        code_block_regex = re.compile(r"```(.*?)```",re.DOTALL)  #take the python code part in the ChatGPT response
+        code_block_regex = re.compile(r"```(.*?)```",re.DOTALL) 
         code_blocks = code_block_regex.findall(content) 
         if code_blocks:
-            full_code = "\n".join(code_blocks) #aggregate the sentences and separate them with '\n'
+            full_code = "\n".join(code_blocks) 
 
             if full_code.startswith("python"):
-                full_code = full_code[8:]  #take the code piece from the 'python' word, till the end of the response 
+                full_code = full_code[8:]
                 full_code = full_code.replace("\\n", "\n")
                 open('./temp/code.txt','w').write(full_code)
    
@@ -178,7 +173,7 @@ class GPT():
         else:
             return None
 
-    #Activate the listening of the robot and the following answer through GPT
+
     def execute(self):
         self.AL.setEnabled(False)
         #autonomouseLife.stopFocus()
@@ -191,10 +186,10 @@ class GPT():
 
            
         
-        ### RECORD USER'S VOICE ###
+        #RECORD USER VOICE
         self.Recorder.record()
 
-        ### TRANSFER AUDIO FROM NAO TO LAPTOP VIA FTP
+        #TRANSFER RECORDED VOICE FROM NAO TO LAPTOP
         try:
             filetransfer = NAOFileTransfer(self.robot,"nao","NAO")
             filetransfer.transfer()
@@ -202,7 +197,7 @@ class GPT():
         except Exception as e:
             print(e)
 
-        ###SEND TO WHISPER THE AUDIO.WAV BY QUERYING THE LOCAL SERVER VIA HTTP METHOD
+        ###SEND THE AUDIO TO WHISPER
         audiofile = './sounds/voice.wav'
         with open(audiofile,'rb') as audio:
             r = requests.post(url=self.whisper_url, files={'audio':audio})
@@ -212,6 +207,7 @@ class GPT():
 
         question = command
 
+        #question = open('./temp/question.txt',"r").read() #domanda/comando da sottoporre a GPT
         r = {'question':question, 'response': None}
 
         self.posture.post.goToPosture("Stand",0.5)
@@ -219,32 +215,32 @@ class GPT():
         loadtime = threading.Thread(target=self.no_response_in_due_time) 
         loadtime.start()
 
-        start = time.time() 
+        start = time.time() #calculate processing time
         response=requests.get(self.url,params={'prompt':json.dumps(r)})
         print('Gpt Response:\n'+ response.content.decode())
         print('Response code:%d'%response.status_code)
         end = time.time()
 
-   
+        
         print("Elapsed GPT processing time: ")
         elapsed_time = end-start
         print(elapsed_time)
 
         response = response.content.decode()
         self.code = response
-        if '```python' in response: 
+        if '```python' in response:
             self.num_tries = self.num_tries + 1
-            print("Wait while I execute the code...")
+            print("Attendi mentre eseguo il codice...")
             codeblocks = self.extract_python_code(response)
 
-            #UPDATE DATABASE WITH REQUESTS AND ANSWERS
+            #DATASET UPDATE, FOR EVALUATION PURPOSES
             parent_folder = dirname(dirname(abspath(__file__)))
-            if 'feder' in parent_folder:   
+            if 'feder' in parent_folder:   #LOCAL LAPTOP FILES
                 self.path = 'C:/Users/feder/Desktop/GPT_Server/data/PromptTable.csv'
             elif 'maria' in parent_folder:
                 self.path = 'C:/Users/maria/Desktop/GPT_Server/data/PromptTable.csv'
             df = pd.read_csv(self.path,sep=';')
-            manipulated_blocks = codeblocks.replace(',',' ')  #salva codice nel dataset
+            manipulated_blocks = codeblocks.replace(',',' ') 
             df.iloc[-1, df.columns.get_loc('Answer')] = manipulated_blocks
             df.iloc[-1, df.columns.get_loc('Elapsed Time')] = elapsed_time
             df.to_csv(self.path,index=False,sep=';')
@@ -256,32 +252,32 @@ class GPT():
             linesofcode = [codeline.lstrip() for codeline in linesofcode ]
             print(linesofcode)
 
-            nao = NaoRobotWrapper(self.robot)  #Nao wrapper to convert the custom methods into NAOqi methods to issue commands to the robot
+            nao = NaoRobotWrapper(self.robot) 
             self.nao = nao
-            for code in linesofcode:   #execute the list of commands ChatGPT produced, sequentially
-                try:                    
+            for code in linesofcode: 
+                try:
                     code = code.replace('\n','')
-                    print("Code steps to execute: ")
+                    print("Step di codice da eseguire: ")
                     print(code)
                     exec(code.replace('\\',""))
                     self.code = None
                 except:
-                    print("Non executable command: " + code)
+                    print("Comando non eseguibile: " + code)
                 
             print("Speech Stopped: ")
             print(self.speechStopped)
+
             
-            if self.speechStopped == False:  #if the robot didn't stop talking
-                  
+            #CORRECTION AND SELF RECOVERY
+            if self.speechStopped == False: 
+                    #print("Topic Learn Activated")
                 self.memory.insertData("okay","0")  
                 self.memory.insertData("error","0")
-                self.speech.say("Sono stato bravo?")
+                self.speech.say("Sono stato bravo?") 
 
-              #Start the error correction loop
                 while(1):  
-                    #check if the user is satisfied with the response or not
-                    retrieved_okay = self.memory.getData("okay")  #if Nao hears a 'Yes', the "okay" variable is set to '1'
-                    retrieved_error = self.memory.getData("error") #if Nao hears a 'No', the "error" variable is set to '1'
+                    retrieved_okay = self.memory.getData("okay")
+                    retrieved_error = self.memory.getData("error")
                     if retrieved_okay == "1":
                         print("Gino did everything right")
                         self.speech.say("Molto bene!")
@@ -290,23 +286,21 @@ class GPT():
                             update = {'Question': question,'Answer': response,'Failure':self.failure,'Elapsed Time':elapsed_time, 'Num_tries':self.num_tries,'Corrected':self.corrected}
                             r=requests.get(self.gptmanagement_url,params={'update':json.dumps(update)})
                             self.num_tries = 0
-                        if self.lastcorrect == False: #last response was incorrect, but now the user is satisfied with the answer so Nao needs to save the answer for future requests
-                            #save the correct example in the instruction prompt
+                        if self.lastcorrect == False: 
                             parent_folder = dirname(dirname(abspath(__file__)))
                             path = None
                             if 'feder' in parent_folder:  
                                 path = 'C:/Users/feder/Desktop/GPT_Server/'
                             elif 'maria' in parent_folder:
                                 path = 'C:/Users/maria/Desktop/GPT_Server/'
-
-                            if 'gpt-3.5-turbo' in self.gpt_model:
-                                f = open(path + 'prompts/initial_setup.txt',"a") #append the correct example
-                            f.write('\n\n') 
+                                
+                            f = open(path + 'prompts/initial_setup.txt',"a") 
+                            f.write('\n\n') # vai a capo due volte
                             print("Question with wrong execution to correct: " + self.questions_with_wrong_execution[0])
-                            f.write(self.questions_with_wrong_execution[0] + ':' +'\n') #write the first formulation of the question that resulted in a wrong answer
+                            f.write(self.questions_with_wrong_execution[0] + ':' +'\n') 
                             fcode = open("./temp/code.txt", "r")
                             linesofcode = fcode.readlines()
-                            for code in linesofcode:  #write the correct code lines for the previously wrong response
+                            for code in linesofcode: 
                                 code = code.replace('\n','').replace('\\',"")
                                 f.write(code + '\n')
                             fcode.close()
@@ -323,7 +317,7 @@ class GPT():
                                 self.failure = 'No'
                                 self.corrected = 'No'
                                 self.questions_with_wrong_execution = []
-                            
+                            #self.dialog.deactivateTopic(self.topicLearn)
                         self.memory.insertData("okay","0")
                         self.memory.insertData("error","0")
                         df = pd.read_csv(self.path,sep=';')  
@@ -337,28 +331,29 @@ class GPT():
                         self.speech.say("Potresti correggermi?")
                         self.posture.post.goToPosture("Stand",0.5)
                         self.questions_with_wrong_execution.append(question)
-                        self.lastcorrect = False  #it Nao acted incorrectly, set the lastcorrect variable as False
-           
+                        self.lastcorrect = False
+                        #self.dialog.deactivateTopic(self.topicLearn)
                         self.memory.insertData("okay","0")
                         self.memory.insertData("error","0")
-                        df = pd.read_csv(self.path,sep=';') 
+                        df = pd.read_csv(self.path,sep=';')  #update colonna Failure = Yes
                         df.iloc[-1, df.columns.get_loc('Failure')] = 'Yes'
                         df.to_csv(self.path,sep=';',index=False)
                         break
                 self.posture.post.goToPosture("Stand",0.5)
                 print("Fatto!")  
-        elif '```python' not in response:
-            #Nao is just chatting with the user and the ChatGPT response is not in python-like format
+        elif '```python' not in response: #if GPT doesnt use python-like method format, gpt just tries to chat with the user through NAO
+      
             print("Gino dice:")
             print(response)
             response = response.replace('\n',' ')
             try:
+                #self.animspeech = ALProxy("ALAnimatedSpeech",self.robot,9559)
                 self.speech.say(str(response)) 
                 self.code = None  
             except Exception as e:
                 print(e)       
             parent_folder = dirname(dirname(abspath(__file__)))
-            if 'feder' in parent_folder:  
+            if 'feder' in parent_folder: 
                 self.path = 'C:/Users/feder/Desktop/GPT_Server/data/PromptTable.csv'
             elif 'maria' in parent_folder:
                 self.path = 'C:/Users/maria/Desktop/GPT_Server/data/PromptTable.csv'
@@ -367,28 +362,30 @@ class GPT():
             df.iloc[-1, df.columns.get_loc('Elapsed Time')] = elapsed_time
             df.to_csv(self.path,index=False,sep=';')
 
-            if self.speechStopped == False:  #if Nao didn't stop talking
+            if self.speechStopped == False: 
                     #print("Topic Learn Activated")
-                self.speech.say("Sono stato bravo?")  #Nao asks if it performed good
+                self.speech.say("Sono stato bravo?")
                        
                 while(1):  
                     retrieved_okay = self.memory.getData("okay")
                     retrieved_error = self.memory.getData("error")
-                    if retrieved_okay == "1":  
+                    if retrieved_okay == "1":
                         print("Gino did everything right")
                         self.speech.say("Molto bene!")
                         if self.lastcorrect == False: 
-                            
+                            #salva tale esempio nel prompt testuale di insegnamento
                             parent_folder = dirname(dirname(abspath(__file__)))
                             path = None
-                            if 'feder' in parent_folder:  
+                            if 'feder' in parent_folder:   
                                 path = 'C:/Users/feder/Desktop/GPT_Server/'
                             elif 'maria' in parent_folder:
                                 path = 'C:/Users/maria/Desktop/GPT_Server/'
 
                             if 'gpt-3.5-turbo' in self.gpt_model:
-                                f = open(path + 'prompts/initial_setup.txt',"a") 
-                            f.write('\n\n') 
+                                f = open(path + 'prompts/initial_setup.txt',"a") #scrivi in append
+                            elif 'gpt-4' in self.gpt_model:
+                                f = open(path + 'prompts/initial_setup_gpt4.txt',"a") #scrivi in append
+                            f.write('\n\n') # vai a capo due volte
                             print("Question with wrong execution to correct: " + self.questions_with_wrong_execution[0])
                             f.write(self.questions_with_wrong_execution[0] + ':' +'\n') 
                             f.write(str(response))
@@ -400,7 +397,7 @@ class GPT():
                             #self.dialog.deactivateTopic(self.topicLearn)
                         self.memory.insertData("okay","0")
                         self.memory.insertData("error","0")
-                        df = pd.read_csv(self.path,sep=';')  
+                        df = pd.read_csv(self.path,sep=';')  #update colonna Failure = No
                         df.iloc[-1, df.columns.get_loc('Failure')] = 'No'
                         df.to_csv(self.path,sep=';',index=False)
                         break      
@@ -410,7 +407,7 @@ class GPT():
                         self.speech.say("Potresti correggermi?")
                         self.posture.post.goToPosture("Stand",0.5)
                         self.questions_with_wrong_execution.append(question)
-                        self.lastcorrect = False  #se ha sbagliato l'esecuzione settiamo questa variabile per correggersi dopo
+                        self.lastcorrect = False 
                         #self.dialog.deactivateTopic(self.topicLearn)
                         self.memory.insertData("okay","0")
                         self.memory.insertData("error","0")
@@ -426,14 +423,13 @@ class GPT():
             
 
 
-    #Start the loop waiting for the trigger word "gino" or "ugo" so that the robot may start listening to the user
+    #START THE LOOP waiting for the keyword to trigger NAO's recording
     def start(self):
         t = threading.current_thread()
         stopthread = threading.Thread(target=self.check_stop_talk) 
         stopthread.start()
         
-        
-        
+           
         while getattr(t,"run",True):
             valask = self.memory.getData("listen")
             valstop = self.memory.getData("stop")
@@ -447,12 +443,13 @@ class GPT():
             except:
                 pass
 
-            if valask == "1": #The robot heard the trigger word
+            if valask == "1":
                 try:
                     self.speech.post.say("Ti ascolto")
-                    
+                    #GPT = NaoGPT(autonomousLife,AL)
                     self.execute()
-
+                    #self.posture.post.goToPosture("Stand",1.0)
+         
                     if (self.AL.isEnabled() is True):
                         self.AL.setEnabled(False)
                         print("Basic Awareness disabled")
@@ -474,10 +471,13 @@ class GPT():
                     self.dialog.unsubscribe("dialog_chat")
                     self.dialog.deactivateTopic(self.topicName)
                     self.dialog.unloadTopic(self.topicName)
+                    #self.dialog.unloadTopic("Learn")
+                    #self.dialog.deactivateTopic(self.topicLearn)
+                    #self.dialog.unloadTopic(self.topicLearn)
                     valstop = "1"
                     break #exit GPT
                 
-            if valstop == "1": #if the program gets terminated
+            if valstop == "1":
                 path = './temp/question.txt'
                 resp_file = open(path,"w")
                 resp_file.write("Stop")
@@ -501,11 +501,11 @@ class GPT():
                 self.posture.post.goToPosture("Stand",0.5)
                 break #exit GPT
 
-            if valblock == "1": #if the robot needs to stay silent and stop the current activity
+            if valblock == "1": 
                 try:
-                    self.speech.stopAll() #try to mute the robot
-                    self.nao.stop_behavior() #try to stop the current activity
-                    self.nao.motion_stop() #try to stop its motion
+                    self.speech.stopAll()
+                    self.nao.stop_behavior() 
+                    self.nao.motion_stop()
                     self.posture.post.goToPosture("Stand",0.5)
                     self.memory.insertData("block","0") 
                     self.posture.post.goToPosture("Stand",0.5)
@@ -539,8 +539,7 @@ class GPT():
     def check_stop_talk(self):
         while(1):
             status = self.tactile.getStatus()
-            if status[0][1] == True: #if the user touches the robot's head, it stops moving and talking
-                print('Touched')
+            if status[0][1] == True:  
                 #print('Touched')
                 self.speech.stopAll()
                 try:
@@ -551,7 +550,7 @@ class GPT():
                 self.speechStopped = True
                 #sys.exit(0)
 
-    def no_response_in_due_time(self): #subprocess checking for latency problems
+    def no_response_in_due_time(self):
         lasttime = time.time()
         while(1):
             current = time.time()
@@ -565,6 +564,6 @@ class GPT():
 
 
 if __name__ == '__main__':
-    Gpt = GPT('gino.local')  #for testing
+        Gpt = GPT('gino.local') #for testing purpose
     Gpt.start()
     print("End")
