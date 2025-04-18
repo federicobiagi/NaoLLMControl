@@ -40,11 +40,6 @@ pip install -r requirements.txt
     ```
 4) Write a request on the demo.py terminal as if you were asking to the robot
 
-## Demo Example:
-In the following video, a demo of the Error Correction algorithm is shown. In the first 2 minutes of the video the robot gets corrected as he is not capable of satisfying the user when playing "Rock Paper Scissor" game. After the correction, the server and demo are interrupted. Upon reboot, virtually, the LLM is able to play "Rock Paper Scissor" with no further correction by the user. This means that the robot has learned a new task that he can reproduce.
-
-https://github.com/user-attachments/assets/3f5d3704-3057-4798-ad5c-a874f62c7057
-
 ## Video Example:
 This video shows a doctor asking a request to the robot which was not previously mapped on the system. The framework provides actions to satisfy the doctor's request and the robot is correctly able to execute them.
 
