@@ -28,7 +28,7 @@ class Server(object):
         self.client = OpenAI(api_key=key)
         #self.finetuner = FineTuner(self.client)
         #self.gpt_model = self.finetuner.get_custom_model_name()
-        self.gpt_model = 'gpt-4-turbo
+        self.gpt_model = 'gpt-4-turbo'
         print("Selected model for prompting: {}".format(self.gpt_model))
         
         self.chat_history = []
