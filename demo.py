@@ -35,7 +35,7 @@ def save_previous_code(content):
         code_blocks = code_blocks.replace("\"","")
         code_blocks = code_blocks.replace("```python","")
         code_blocks = code_blocks.replace("```","")
-        open('./temp/previous_code.txt','w').write(code_blocks)
+        open('./temp/code.txt','w').write(code_blocks)
    
         return code_blocks.rstrip()
     else:
@@ -63,7 +63,7 @@ if error_corr_mode == 'y':
         print('Response code:%d'%response.status_code)
 
         response = response.content.decode()
-        #code = extract_python_code(response)
+        code = extract_python_code(response)
         print('Code:\n'+ response)
 
 
@@ -84,12 +84,11 @@ if error_corr_mode == 'y':
             #print("Gino did right")
             if lastcorrect == False:
                 print("nao.say(\"All right!\")")
-                f = open('./prompts/initial_setup_english.txt',"a")
-                f.write('\n')
+                f = open('./system_prompts/initial_setup.txt',"a")
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
-                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
+                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':')
                 question_with_wrong_execution = []
-                fcode = open("./temp/previous_code.txt", "r")
+                fcode = open("./temp/code.txt", "r")
                 linesofcode = fcode.readlines()
                 for code in linesofcode:  #write the correct code lines for the previously wrong response
                     code = code.replace('\n','').replace('\\',"")
