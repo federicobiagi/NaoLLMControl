@@ -28,7 +28,7 @@ class Server(object):
         self.client = OpenAI(api_key=key)
         #self.finetuner = FineTuner(self.client)
         #self.gpt_model = self.finetuner.get_custom_model_name()
-        self.gpt_model = 'gpt-3.5-turbo'
+        self.gpt_model = 'gpt-4-turbo
         print("Selected model for prompting: {}".format(self.gpt_model))
         
         self.chat_history = []
@@ -49,11 +49,11 @@ class Server(object):
         """Returns the number of tokens used by a list of messages."""
         try:
             if "gpt-4" in model:
-                encoding = tiktoken.encoding_for_model("gpt-4-0613")
+                encoding = tiktoken.encoding_for_model("gpt-4-turbo")
         except KeyError:
             #encoding = tiktoken.get_encoding(self.gpt_model)
             print("Encoding for the selected model not supported")
-        if model == "gpt-3.5-turbo" or "gpt-4o-mini":  
+        if model == "gpt-3.5-turbo":  
             num_tokens = 0
             for message in messages:
                 num_tokens += 4  # every message follows <im_start>{role/name}\n{content}<im_end>\n
@@ -81,48 +81,8 @@ class Server(object):
         self.robot_name = name
         pass
 
-    def check_sentiment(self, prompt):
-        instruction = """You are a bot that needs to analyze the user requests. Given an input sentence,
-        you must perform sentiment analysis to understand if the user is satisfied or not. The user is not satisfied when he uses words like:
-        "you are wrong", "it is not correct", "it is wrong", "you made a mistake".
-        The user is satisfied if he does not use the words listed before.
-       Given the specified criteria, answer with 
-        <satisfied> (if the user is satisfied) 
-        <dissatisfied> (if the user is not satisfied): """                                                       
-        try:
-            completion = self.client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages = [{
-                "role":"user",
-                "content": instruction + "{}".format(prompt)
-            }],
-            temperature = 0
-            )
-        except openai.APIError as e:
-            print("OpenAI Unknown Error")
-            print(e)
-            return "I could not perform sentiment analysis"
-        except openai.APIConnectionError as e:
-            print("OpenAI Connection Error")
-            print(e)
-            return "I could not perform sentiment analysis"
-        except openai.RateLimitError as e:
-            print("Token Rate Limit Reached")
-            print(e)
-            return "I could not perform sentiment analysis"
-
-        sentiment = unidecode.unidecode(str(completion.choices[0].message.content))
-        print("The user is "+ sentiment)
-        return sentiment  
-
         
     def ask(self,prompt):
-        t = Thread(target=lambda q, arg1: q.put(self.check_sentiment(arg1)), args=(self.que, prompt))
-        t.start()
-        #with concurrent.futures.ThreadPoolExecutor() as executor:
-        #    sentiment_result = executor.submit(self.check_sentiment, prompt)
-        self.threads_list.append(t)
-
         print(prompt)
         self.chat_history.append(
             {
@@ -131,7 +91,7 @@ class Server(object):
             } )
         #the message inserted in the request contains the whole conversation up the i-th timestep, this is done to mantain dialog context
         
-        num_input_tokens = self.num_tokens_from_messages(self.chat_history, 'gpt-4o-mini')
+        num_input_tokens = self.num_tokens_from_messages(self.chat_history, self.gpt_model)
 
         if num_input_tokens >= 16300:  #if the request's length has reached the context size limit, the tokens will exceed the context window and ChatGPT will loose the instruction prompt information
             #proceed with the truncation
@@ -185,21 +145,12 @@ class Server(object):
         #    self.chat_history = first + last 
         #    print("Chat History Length after cut: ")
         #    print(len(self.chat_history))
-
-        for t in self.threads_list:
-            t.join()
-        while not self.que.empty():
-            sentiment = self.que.get()
         
-        #if sentiment_result.done() is True:
-        #    sentiment = sentiment_result.result()
-        #else:
-        #    sentiment = '<None>'
 
         print('Response')
         response = unidecode.unidecode(str(completion.choices[0].message.content))
-        print(sentiment + response)
-        return sentiment + response  #return gpt response to last request, extracted from the "assistant" field 
+        print(response)
+        return response  #return gpt response to last request, extracted from the "assistant" field 
 
     def startUpGPT(self,robotname):#initialize ChatGPT
         
@@ -220,8 +171,27 @@ class Server(object):
         }
         ]
 
-        self.ask('Hi {}!'.format(self.robot_name))  #Instruction Prompt provided to ChatGPT, together with an initial greet
-        print("Welcome to ChatBot NAO!")
+        try:
+            completion = self.client.chat.completions.create(
+            model=self.gpt_model,
+            messages= self.chat_history,  
+            temperature = 0
+            )
+        except openai.APIError as e:
+            print("OpenAI Unknown Error")
+            print(e)
+            return "Non sono riuscito a generare una risposta, mi dispiace, riavviami"
+        except openai.APIConnectionError as e:
+            print("OpenAI Connection Error")
+            print(e)
+            return "C'è stato un errore di connessione, riavviami"
+        except openai.RateLimitError as e:
+            print("Token Rate Limit Reached")
+            print(e)
+            return "Sono stanco, non riesco più a parlare, riavviami"
+        
+        print("ChatGPT loaded")
+        print("Benvenuto nel ChatBot Nao!")
 
 
     def whisperTranscribe(self):
@@ -335,6 +305,5 @@ class Server(object):
 #For server debug purposes
 if __name__=='__main__': #the server runs locally
     server = Server()
-    server.check_sentiment('Hi come here')
     server.startUpGPT('gino.local')
     server.ask("Hi gino how are you?")
