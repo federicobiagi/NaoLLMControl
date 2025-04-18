@@ -1,5 +1,6 @@
-# coding=utf-8
+#!C:\\ProgramData\\Anaconda3\\python.exe
 
+# coding=utf-8
 #Demo script to show the output ChatGPT is able to produce based on the provided Instruction Prompt
 #Produced code must then be processed by the Nao Wrapper in the naorobot_wrapper.py script so that Nao Robot may execute the actions
 
@@ -32,8 +33,6 @@ def save_previous_code(content):
     if code_blocks:
         code_blocks = code_blocks.replace("\\n", "\n")
         code_blocks = code_blocks.replace("\"","")
-        code_blocks = code_blocks.replace("<satisfied>","")
-        code_blocks = code_blocks.replace("<dissatisfied>","")
         code_blocks = code_blocks.replace("```python","")
         code_blocks = code_blocks.replace("```","")
         open('./temp/previous_code.txt','w').write(code_blocks)
@@ -42,13 +41,6 @@ def save_previous_code(content):
     else:
         return None
 
-def extract_sentiment(command):
-    pattern = r'<(.*?)>'
-    sentiment = re.search(pattern,command)
-    if sentiment:
-        return sentiment.group(1)
-    else:
-        return None #no match found
 
 lastcorrect = True
 question_with_wrong_execution = []
@@ -71,26 +63,29 @@ if error_corr_mode == 'y':
         print('Response code:%d'%response.status_code)
 
         response = response.content.decode()
-        code = extract_python_code(response)
-        sentiment = extract_sentiment(response)
-        if sentiment == 'satisfied':
-            answer = response.replace('<satisfied>',"")
+        #code = extract_python_code(response)
+        print('Code:\n'+ response)
+
+
+        correctness = input("Have I done well? (y/n) ")
+
+
+        if correctness == 'y':
             last_question = question
             retrieved_okay = 1
-        if sentiment == 'dissatisfied':
+        if correctness == 'n':
             print("nao.say(\"I'm sorry, I'll try to correct myself\")")
-            question_with_wrong_execution.append(last_question)
-            answer = response.replace('<dissatisfied>',"")
+            #question_with_wrong_execution.append(question)
             retrieved_okay = 0
-        print('Gpt Response:\n'+ answer)
+        
             
 
         if retrieved_okay == 1:
             #print("Gino did right")
             if lastcorrect == False:
                 print("nao.say(\"All right!\")")
-                f = open('./system_prompts/initial_setup.txt',"a")
-                f.write('\n\n')
+                f = open('./prompts/initial_setup_english.txt',"a")
+                f.write('\n')
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
                 f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
                 question_with_wrong_execution = []
@@ -123,7 +118,7 @@ else:
         response=requests.get(base_url + '/gino',params={'prompt':json.dumps(r)})
         print('Response code:%d'%response.status_code)
         response = response.content.decode().replace
-        print('Gpt Response:\n'+ response.content.decode())
+        print('Gpt Response:\n'+ response)
     
 
 
