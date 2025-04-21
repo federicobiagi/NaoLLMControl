@@ -28,7 +28,7 @@ class Server(object):
         self.client = OpenAI(api_key=key)
         #self.finetuner = FineTuner(self.client)
         #self.gpt_model = self.finetuner.get_custom_model_name()
-        self.gpt_model = 'gpt-4-turbo'
+        self.gpt_model = 'gpt-4-turbo'  #default model to use for the server
         print("Selected model for prompting: {}".format(self.gpt_model))
         
         self.chat_history = []
@@ -48,12 +48,7 @@ class Server(object):
     def num_tokens_from_messages(self, messages, model):
         """Returns the number of tokens used by a list of messages."""
         try:
-            if "gpt-4" in model:
-                encoding = tiktoken.encoding_for_model("gpt-4-turbo")
-        except KeyError:
-            #encoding = tiktoken.get_encoding(self.gpt_model)
-            print("Encoding for the selected model not supported")
-        if model == "gpt-3.5-turbo":  
+            encoding = tiktoken.encoding_for_model(self.gpt_model)  
             num_tokens = 0
             for message in messages:
                 num_tokens += 4  # every message follows <im_start>{role/name}\n{content}<im_end>\n
@@ -63,20 +58,11 @@ class Server(object):
                         num_tokens += -1  # role is always required and always 1 token
             num_tokens += 2  # every reply is primed with <im_start>assistant
             return num_tokens
-        else:
-            raise NotImplementedError(f"""num_tokens_from_messages() is not presently implemented for model {model}.""")
+        except Exception as e:
+            print(e)
+            raise NotImplementedError(f"""num_tokens_from_messages() is not presently implemented for model {self.gpt_model}.""")
 
-    def extract_python_code(self,content):
-        code_block_regex = re.compile(r"```(.*?)```",re.DOTALL) 
-        if code_blocks:
-            full_code = "\n".join(code_blocks) 
-
-            if full_code.startswith("python"):
-                full_code = full_code[7:]  
-            return full_code.rstrip()
-        else:
-            return None    
-        
+            
     def set_robot_name(self,name):
         self.robot_name = name
         pass
@@ -231,7 +217,7 @@ class Server(object):
             )
         
         print("Length of just chatting history:")
-        num_input_tokens = self.num_tokens_from_messages(self.justchatting_history, 'gpt-3.5-turbo')
+        num_input_tokens = self.num_tokens_from_messages(self.justchatting_history, self.gpt_model)
         print(num_input_tokens)
         if num_input_tokens >= 16300:  #If the user already made 6 chat requests (3 components in the chat list per request), then the older requests are deleted to avoid overload
             self.justchatting_history = self.justchatting_history[-8:] #keep only the last 2 requests + the latest request that still waits for an answer
@@ -307,3 +293,4 @@ if __name__=='__main__': #the server runs locally
     server = Server()
     server.startUpGPT('gino.local')
     server.ask("Hi gino how are you?")
+
