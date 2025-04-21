@@ -18,8 +18,6 @@ def extract_python_code(content):
     if code_blocks:
         code_blocks = code_blocks.replace("\\n", "\n")
         code_blocks = code_blocks.replace("\"","")
-        code_blocks = code_blocks.replace("<satisfied>","")
-        code_blocks = code_blocks.replace("<dissatisfied>","")
         code_blocks = code_blocks.replace("```python","")
         code_blocks = code_blocks.replace("```","")
         open('./temp/code.txt','w').write(code_blocks)
@@ -35,7 +33,7 @@ def save_previous_code(content):
         code_blocks = code_blocks.replace("\"","")
         code_blocks = code_blocks.replace("```python","")
         code_blocks = code_blocks.replace("```","")
-        open('./temp/code.txt','w').write(code_blocks)
+        open('./temp/previous_code.txt','w').write(code_blocks)
    
         return code_blocks.rstrip()
     else:
@@ -63,7 +61,7 @@ if error_corr_mode == 'y':
         print('Response code:%d'%response.status_code)
 
         response = response.content.decode()
-        code = extract_python_code(response)
+        #code = extract_python_code(response)
         print('Code:\n'+ response)
 
 
@@ -85,10 +83,11 @@ if error_corr_mode == 'y':
             if lastcorrect == False:
                 print("nao.say(\"All right!\")")
                 f = open('./system_prompts/initial_setup.txt',"a")
+                f.write('\n')
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
-                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':')
+                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
                 question_with_wrong_execution = []
-                fcode = open("./temp/code.txt", "r")
+                fcode = open("./temp/previous_code.txt", "r")
                 linesofcode = fcode.readlines()
                 for code in linesofcode:  #write the correct code lines for the previously wrong response
                     code = code.replace('\n','').replace('\\',"")
