@@ -61,7 +61,7 @@ if error_corr_mode == 'y':
         print('Response code:%d'%response.status_code)
 
         response = response.content.decode()
-        #code = extract_python_code(response)
+        code = extract_python_code(response)
         print('Code:\n'+ response)
 
 
@@ -85,9 +85,9 @@ if error_corr_mode == 'y':
                 f = open('./system_prompts/initial_setup.txt',"a")
                 f.write('\n')
                 print("Question with wrong execution to correct: " + question_with_wrong_execution[0])
-                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':' +'\n')
+                f.write('\"' + question_with_wrong_execution[0] + '\"' + ':')
                 question_with_wrong_execution = []
-                fcode = open("./temp/previous_code.txt", "r")
+                fcode = open("./temp/code.txt", "r")
                 linesofcode = fcode.readlines()
                 for code in linesofcode:  #write the correct code lines for the previously wrong response
                     code = code.replace('\n','').replace('\\',"")
