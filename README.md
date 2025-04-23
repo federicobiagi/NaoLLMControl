@@ -42,12 +42,12 @@ pip install -r requirements.txt
 
 
 ## Demo Video Example
-THis video shows an interaction with the chatbot that is able to control the robot. The error correction algorithm gets activated.
+This video shows an interaction with the chatbot that is able to control the robot. The error correction algorithm gets activated.
 The user asks the robot to move closer. After an initial unsatisfactory response, the chatbot gets corrected. In the subsequente interaction, the chatbot no longer commits the same error.
-<video width="320" height="240" controls>
-  <source src="https://github.com/federicobiagi/NaoLLMControl/NaoLLMDemo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+https://github.com/user-attachments/assets/7b7ac515-fc2d-4c97-ad3c-f3a99e3440ba
+
+
 
 
 ## NAO Robot Video Example:
