@@ -46,6 +46,7 @@ class PromptResource(Resource):
         response = server.ask(prompt['question'])
         prompt['response'] = response
         #Save question and answer on the database
+        """
         try:
             #new_row = {'question' : prompt['question'], 'answer': prompt['response']}
             df1 = pd.read_csv('./data/PromptTable.csv',sep=';')
@@ -60,7 +61,7 @@ class PromptResource(Resource):
         except Exception as e:
             print(e)
             print("Impossibile aggiornare database dei prompt")
-        
+        """
         return prompt['response'], 200
     
     def post(self,robot_name): #post method triggered at GPT Service startup to instruct ChatGPT with the Instruction Prompt
