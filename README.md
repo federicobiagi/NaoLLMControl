@@ -40,7 +40,17 @@ pip install -r requirements.txt
     ```
 4) Write a request on the demo.py terminal as if you were asking to the robot
 
-## Video Example:
+
+## Demo Video Example
+THis video shows an interaction with the chatbot that is able to control the robot. The error correction algorithm gets activated.
+The user asks the robot to move closer. After an initial unsatisfactory response, the chatbot gets corrected. In the subsequente interaction, the chatbot no longer commits the same error.
+<video width="320" height="240" controls>
+  <source src="https://github.com/federicobiagi/NaoLLMControl/NaoLLMDemo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+## NAO Robot Video Example:
 This video shows a doctor asking a request to the robot which was not previously mapped on the system. The framework provides actions to satisfy the doctor's request and the robot is correctly able to execute them.
 
 https://github.com/user-attachments/assets/aed689d4-c6fa-4d63-92b9-7d93558749b2
