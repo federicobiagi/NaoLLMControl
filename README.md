@@ -1,5 +1,5 @@
 # NaoLLMControl
-Repository that contains the essential files regarding the paper "Intuitive Control of Social Robots using Natural Language with ChatGPT". 
+Repository that contains the essential files regarding the paper "Intuitive Control of a Social Robot Using Natural Language with Large Language Model and Error Correction Capabilities". 
 The files cannot be replicated or downloaded for commercial purposes. 
 The files have been made available to the viewer for research and informative purposes.
 
