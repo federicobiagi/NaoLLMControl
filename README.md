@@ -55,6 +55,11 @@ This video shows a doctor asking a request to the robot which was not previously
 
 https://github.com/user-attachments/assets/aed689d4-c6fa-4d63-92b9-7d93558749b2
 
+This video shows the simulation of a complete visit with the LLM-enabled control.
+
+https://github.com/user-attachments/assets/3e5845a0-ffa0-4446-b39d-9cf07eb49843
+
+
 
 ## Note:
 Sentences pronounced by the robot and users' requests saved on the .csv file are issued in Italian language as the research project has been pursued in "Policlinico di Modena" Hospital in Italy.
