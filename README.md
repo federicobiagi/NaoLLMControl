@@ -67,6 +67,7 @@ Make sure to have in a Python 3 project directory:
 - main.py
 - requirements_server_py3.txt
 - speech_engine.py
+- system_prompts/initial_setup.txt
 
 ## Installation
 1) Define a python 2.7 environment in which you have naoqi SDK installed. Then, install required packages:
