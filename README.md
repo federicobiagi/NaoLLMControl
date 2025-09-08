@@ -22,7 +22,7 @@ A virtual environment is recommended.
 - OpenAI Account
 - OpenAI API Key
 
-### Installation of the Demo if you do not have a NAO Robot
+# Installation of the Demo if you do not have a NAO Robot
 Clone the repository on a dedicated directory and use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required Python libraries.
 ```bash
 pip install -r requirements.txt
@@ -47,7 +47,7 @@ The user asks the robot to move closer. After an initial unsatisfactory response
 
 https://github.com/user-attachments/assets/7b7ac515-fc2d-4c97-ad3c-f3a99e3440ba
 
-### Installation of the program if you have a NAO Robot
+# Installation of the program if you have a NAO Robot
 ## Requirements
 - Python 3.7+
 - OpenAI Account
