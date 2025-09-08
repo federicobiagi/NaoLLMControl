@@ -54,16 +54,33 @@ https://github.com/user-attachments/assets/7b7ac515-fc2d-4c97-ad3c-f3a99e3440ba
 - OpenAI API Key
 - naoqi SDK
 
+Make sure to have in a Python 2.7 project directory:
+- GPT_prompt_chat_client_new.py
+- nao_file_transfer.py
+- naorobot_wrapper.py
+- utils.py
+- record_speech.py
+- requirements_py27.txt
+
+Make sure to have in a Python 3 project directory:
+- server.py
+- main.py
+- requirements_server_py3.txt
+- speech_engine.py
+
 ## Installation
 1) Define a python 2.7 environment in which you have naoqi SDK installed. Then, install required packages:
 ```bash
 pip install -r requirements_py27.txt
 ```
+
 2) Define a separate python project. Define a conda environment with Python 3 and install the required packages:
 ```bash
 pip3 install -r requirements_server_py3.txt
 ```
+
 3) In the Python3 environment, set up your OpenAI API KEY as an environment variable called "OPENAI_API_KEY"
+
 
 ## Usage
 In the Python 3 project, launch:
@@ -72,7 +89,7 @@ In the Python 3 project, launch:
  ```
 In the Python 2.7 project, launch:
 ```bash
- C:/location/on/laptop/python.exe GPT_prompt_chat_client_new.py
+ C:/location/on/laptop/python.exe GPT_prompt_chat_client_new.py --robot_ip your_nao_robot_ip
  ```
 
 Wait a few seconds until NAO deactivates it's autonomous life and says "I'm ready".
