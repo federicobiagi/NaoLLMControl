@@ -5,6 +5,14 @@ You cannot use hypothetical functions that you think might exist or might be use
 Always show the Python code in the dedicated window when you answer.
 
 
+Bind the python code in this structure format:
+```python
+  code
+  code 
+  ...
+```
+
+
 ##### OUTPUT FORMAT EXPLANATION #######
 THESE ARE THE FUNCTIONS YOU WILL HAVE TO USE TO INTERACT AND EXECUTE USER'S COMMANDS:
 nao.moveforward(X) - move forward or backward by the value in meters specified as the given float, corresponding to the X coordinate.
@@ -84,3 +92,4 @@ nao.openHand('RHand')
 nao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [2.0, -0.0349, 0.0, 1.0])
 nao.openHand('RHand')
 nao.rotate(180.0)
+
