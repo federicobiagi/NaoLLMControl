@@ -22,7 +22,7 @@ A virtual environment is recommended.
 - OpenAI Account
 - OpenAI API Key
 
-## Installation
+### Installation of the Demo if you do not have a NAO Robot
 Clone the repository on a dedicated directory and use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required Python libraries.
 ```bash
 pip install -r requirements.txt
@@ -47,8 +47,37 @@ The user asks the robot to move closer. After an initial unsatisfactory response
 
 https://github.com/user-attachments/assets/7b7ac515-fc2d-4c97-ad3c-f3a99e3440ba
 
+### Installation of the program if you have a NAO Robot
+## Requirements
+- Python 3.7+
+- OpenAI Account
+- OpenAI API Key
+- naoqi SDK
 
+## Installation
+1) Define a python 2.7 environment in which you have naoqi SDK installed. Then, install required packages:
+```bash
+pip install -r requirements_py27.txt
+```
+2) Define a separate python project. Define a conda environment with Python 3 and install the required packages:
+```bash
+pip3 install -r requirements_server_py3.txt
+```
+3) In the Python3 environment, set up your OpenAI API KEY as an environment variable called "OPENAI_API_KEY"
 
+## Usage
+In the Python 3 project, launch:
+```bash
+ C:/conda/location/on/laptop/of/python3/python.exe main.py
+ ```
+In the Python 2.7 project, launch:
+```bash
+ C:/location/on/laptop/python.exe GPT_prompt_chat_client_new.py
+ ```
+
+Wait a few seconds until NAO deactivates it's autonomous life and says "I'm ready".
+
+To ask NAO to do something, pronounce the word 'Gino' and then wait for NAO to ask for your command. Then you have 7 seconds to ask NAO to do something. You can also pronounce "listen" to make NAO listen to your request.
 
 ## NAO Robot Video Example:
 This video shows a doctor asking a request to the robot which was not previously mapped on the system. The framework provides actions to satisfy the doctor's request and the robot is correctly able to execute them.
