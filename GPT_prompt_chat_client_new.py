@@ -390,7 +390,11 @@ class GPT():
         df.iloc[-1, df.columns.get_loc('Failure')] = 'Yes'
         df.to_csv(path,sep=';',index=False)
 
-if __name__ == '__main__':
-    Gpt = GPT("192.168.137.132", "Sei un NAO Robot di nome Gino che aiuta i bambini all'ospedale")  #solo per testing
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Start GPT chat client for NAO Robot")
+    parser.add_argument('--robot_ip', type=str, required=True, help='IP address of the NAO Robot')
+    args = parser.parse_args()
+    robot_ip = args.robot_ip
+    Gpt = GPT(robot_ip, "You are a NAO Robot that helps children at the hospital") 
     Gpt.start()
