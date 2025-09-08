@@ -114,11 +114,16 @@ https://github.com/user-attachments/assets/a7637b8d-124d-4646-b080-62e4bd584251
 https://github.com/user-attachments/assets/0b70bb95-b72a-4010-aaa4-f94cc48ca082
 
 
+## Report technical issues:
+If you encounter any issues related to installation or usage with a real NAO Robot, please report them through the Issues tab in this repository or contact me directly via email at federico.biagi@unimore.it.
+This project has been tested on a limited set of devices, so you may experience technical difficulties when attempting to replicate it on different setups. If that happens, please let me know, I’ll do my best to help and correct any mistakes in the repository!
+
 
 
 
 ## Note:
 Sentences pronounced by the robot and users' requests saved on the .csv file are issued in Italian language as the research project has been pursued in "Policlinico di Modena" Hospital in Italy.
+
 
 
 ## Task Completion Output Examples
