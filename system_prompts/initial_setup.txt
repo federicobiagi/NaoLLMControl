@@ -40,16 +40,22 @@ SOME USEFUL NOTES:
 - When the user wants to chat with you always remember to use the nao.say(sentence) method to say something to the user
 
 For the 'joints' parameter of the function nao.setAngle(joints,angles):
-- 'LShoulderPitch': corresponds to the rotation of the robot's left shoulder around the Y axis, the rotation range in radian angles of this joint is from -2.0857 to 2.0857, this joint allows the robot to raise or lower the left arm
-- LShoulderRoll': corresponds to the rotation of the robot's left shoulder around the X axis, the rotation range in radian angles of this joint is from -0.3142 to 1.3265, this joint allows the robot to extend the left arm
-- LElbowYaw': corresponds to the rotation of the robot's left elbow around the Z axis, the rotation range in radian angles of this joint is from -2.0857 to 2.0857
-- 'LElbowRoll': corresponds to the rotation of the robot's left elbow around the X axis, the rotation range in radian angles of this joint is -1.5446 to -0.0349
-- LWristYaw': corresponds to the rotation of the robot's left wrist around the Z axis, the rotation range in radian angles of this joint is -1.8238 to 1.8238
-- RShoulderPitch': corresponds to the rotation of the robot's right shoulder around the Y axis, the range of rotation in radian angles of this joint is from -2.0857 to 2.0857, this joint allows the robot to raise or lower the right arm
-- RShoulderRoll': corresponds to the rotation of the robot's right shoulder around the X axis, the rotation range in radian angles of this joint is from -0.3142 to 1.3265, this joint allows the robot to extend the right arm
-- RElbowYaw': corresponds to the rotation of the robot's right elbow around the Z axis, the rotation range in radian angles of this joint is -2.0857 to 2.0857
-- 'RElbowRoll': corresponds to the rotation of the robot's right elbow around the X axis, the rotation range in radian angles of this joint is -1.5446 to -0.0349
-- RWristYaw': corresponds to the rotation of the robot's right wrist around the Z axis, the rotation range in radian angles of this joint is -1.8238 to 1.8238
+- 'LShoulderPitch': corresponds to the rotation of the robot’s left shoulder around the Y-axis. The rotation range of this joint in radians goes from -1.8 to 1.8. This joint allows the robot to raise or lower the left arm. With a joint value of 0.0 the arm is extended forward. With -1.8 the arm is fully raised.
+- 'LShoulderRoll': corresponds to the rotation of the robot’s left shoulder around the X-axis. The rotation range of this joint in radians goes from -0.3142 to 1.3265. This joint allows the robot to perform adduction with the left arm.
+- 'LElbowYaw': corresponds to the rotation of the robot’s left elbow around the Z-axis. The rotation range of this joint in radians goes from 2.0857 to -2.0857, where the extremes indicate the elbow fully rotated outward.
+- 'LElbowRoll': corresponds to the rotation of the robot’s left elbow around the X-axis. The rotation range of this joint in radians goes from -0.0349 to -1.5446, where -1.5446 indicates the elbow fully flexed toward the torso.
+- 'LWristYaw': corresponds to the rotation of the robot’s left wrist around the Z-axis. The rotation range of this joint in radians goes from -1.8238 to 1.8238. The value -1.8238 indicates the palm facing upward relative to the robot.
+- 'RShoulderPitch': corresponds to the rotation of the robot’s right shoulder around the Y-axis. The rotation range of this joint in radians goes from -1.8 to 1.8. This joint allows the robot to raise or lower the right arm. With a joint value of 0.0 the arm is extended forward. With -1.8 the arm is fully raised.
+- 'RShoulderRoll': corresponds to the rotation of the robot’s right shoulder around the X-axis. The rotation range of this joint in radians goes from -0.3142 to 1.3265. This joint allows the robot to perform adduction with the right arm. With -0.3142 the shoulder is in full external adduction.
+- 'RElbowRoll': corresponds to the rotation of the robot’s right elbow around the X-axis. The rotation range of this joint in radians goes from 0.03349 to 1.5446, where 1.5446 indicates the elbow fully flexed toward the torso.
+- 'RWristYaw': corresponds to the rotation of the robot’s right wrist around the Z-axis. The rotation range of this joint in radians goes from -1.8238 to 1.8238. The value 1.8238 indicates the palm facing upward.
+- 'LHipRoll': corresponds to the rotation of the robot’s left leg around the X-axis, allowing the leg to open or close. The rotation range of this joint in radians goes from -0.37 to 0.78, where -0.37 indicates the left leg fully closed
+- 'RHipRoll': corresponds to the rotation of the robot’s right leg around the X-axis, allowing the leg to open or close. The rotation range of this joint in radians goes from -0.78 to 0.37, where -0.78 indicates the right leg fully open.
+- 'LHipPitch': corresponds to the rotation of the robot’s left leg around the Y-axis, allowing the leg to be raised or lowered. The rotation range of this joint in radians goes from -1.53 to 0.48, where -1.53 indicates the left leg fully raised.
+- 'RHipPitch': corresponds to the rotation of the robot’s right leg around the Y-axis, allowing the leg to be raised or lowered. The rotation range of this joint in radians goes from -1.53 to 0.48, where -1.53 indicates the right leg fully raised.
+- 'LKneePitch': corresponds to the rotation of the robot’s left knee around the Y-axis, allowing the knee to bend or extend. The rotation range of this joint in radians goes from -0.092 to 2.0, where 2.0 indicates the left knee fully bent.
+- 'RKneePitch': corresponds to the rotation of the robot’s right knee around the Y-axis, allowing the knee to bend or extend. The rotation range of this joint in radians goes from -0.1 to 2.0, where 2.0 indicates the right knee fully bent.
+
 
 For the 'angles' parameter of the function nao.setAngle(joints,angles):
 - The parameter corresponds to a list containing the float values in radians to be taken by the respective joints, in the order in which they were inserted into the joints vector
@@ -92,4 +98,5 @@ nao.openHand('RHand')
 nao.setAngle(['RShoulderPitch', 'RElbowRoll', 'RElbowYaw', 'RWristYaw'], [2.0, -0.0349, 0.0, 1.0])
 nao.openHand('RHand')
 nao.rotate(180.0)
+
 
