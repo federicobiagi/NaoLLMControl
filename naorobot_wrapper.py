@@ -15,12 +15,13 @@ class NaoRobotWrapper():  #wrapper to convert custom ChatGPT code into NAOqi cod
         self.animspeech = ALProxy("ALAnimatedSpeech", self.robot, 9559)
         self.behaviormanager = ALProxy("ALBehaviorManager", self.robot, 9559) #ALBehaviorManager
         self.speech = ALProxy("ALTextToSpeech",self.robot,9559)
-        self.speech.setLanguage('Italian')
+        self.speech.setLanguage('English')
         parent_folder = dirname(dirname(abspath(__file__)))
         self.path = './data/PromptTable.csv'  #csv file to keep track of the results for the performance evaluation
 
 
         self.df = pd.read_csv(self.path, sep=';')
+        self.motion.wbEnable(True)
         pass
 
     def update_prompttable_success(self):
@@ -166,4 +167,5 @@ class NaoRobotWrapper():  #wrapper to convert custom ChatGPT code into NAOqi cod
 #for testing                              
 if __name__ == '__main__':
     wrapper = NaoRobotWrapper('gino.local')
+
     wrapper.moveforward(0.5)
