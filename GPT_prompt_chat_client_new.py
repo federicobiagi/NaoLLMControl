@@ -318,7 +318,7 @@ class GPT():
 
             if valask == "1":
                 try:
-                    self.speech.post.say("Ti ascolto")
+                    self.speech.post.say("I am listening")
                     ######VERSIONE PIU' VELOCE CON WHISPER E GPT ESEGUITI INSIEME NELLO STESSO SERVER METHOD
                     self.execute_whisper_and_gpt()
 
@@ -398,3 +398,4 @@ if __name__ == '__main__':
     robot_ip = args.robot_ip
     Gpt = GPT(robot_ip, "You are a NAO Robot that helps children at the hospital") 
     Gpt.start()
+
