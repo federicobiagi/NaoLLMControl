@@ -309,34 +309,8 @@ class Server(object):
         print(sysprompt)
         if '192' in self.robot_name:
            robot_name = 'gino'
-        #sysprompt = "Sei un NAO Robot di nome {0} che opera nel reparto pediatrico di un ospedale e interagisce sempre con dei bambini, ".format(self.robot_name) + sysprompt
-        #try:
-        #    self.finetuner.check_if_ready_to_fine_tune()  #
-        #except Exception as e:
-        #    print(e)
 
-        #richiesta = "Rispondi come se tu fossi un vero NAO Robot di nome {0}, ".format(self.robot_name)
-        #self.chat_history = [
-        #{
-        #    "role" : "system",  #this role modifies the behavior of the GPT instance 
-        #    "content" : sysprompt + 
-        #},
-        #{
-        #    "role" : "user",
-        #    "content": richiesta
-        #},
-        #{
-        #    "role" : "assistant", #an initial example of how GPT should respond
-        #    "content" : """```python 
-        #    nao.say("Ciao sono un NAO Robot di nome {0}")
-        #    ```
-#
-        #    Questo codice usa la funzione 'nao.say(frase)' per far dire al robot una frase segnalando che è pronto ed è un NAO Robot. Usa questo formato di inserimento del codice nella risposta.""".format(self.robot_name) 
-        #    }
-        #]
-        
-        initial_prompt = Path("./prompts/initial_setup.txt").read_text(encoding='utf-8')
-        initial_prompt = sysprompt + '\n' + initial_prompt
+        initial_prompt = sysprompt + '\n'
         
         self.chat_history = [
         {
@@ -511,3 +485,4 @@ if __name__=='__main__': #il server runna localmente
     #server.send_chat_chunk('gino',"raccontami una storia in tre frasi")
 
     server.ask("ciao gino come stai?")
+
