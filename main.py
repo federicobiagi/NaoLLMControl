@@ -15,8 +15,6 @@ import json
 import threading
 import pandas as pd
 import speech_recognition as sr
-import speech_rec_engine
-from speech_rec_engine import SpeechRecEngine
 
 
 
@@ -182,48 +180,6 @@ class GPTServerManagement(Resource):  #resource used to reload ChatGPT with the 
         return 200
 
 
-########## Resources dedicated to the speech recognition part to enable interaction with NAO Robot via external wireless microphone, the section is not part of the research paper###########
-
-class SpeechRecForChatting(Resource):
-    #app.run(host='127.0.0.1',port=8080,debug=True)
-    def post(self,robot_name):  #method used to provide a request to ChatPT and retrieve the answer
-        keyword = robot_name.split('.')[0]
-        self.speechengine = SpeechRecEngine(keyword,robot_name, 'just_chat')
-        speechenginethread = threading.Thread(target=self.speechengine.start) #it must be a non blocking thread, as the speechengine goes in loop and thus blocks the server
-        try:
-            speechenginethread.start()
-        except Exception as e:
-            print(e)
-
-class SpeechRecForControl(Resource):
-    #app.run(host='127.0.0.1',port=8080,debug=True)
-    def post(self,robot_name):  #method used to provide a request to ChatPT and retrieve the answer
-        keyword = robot_name.split('.')[0]
-        self.speechengine = SpeechRecEngine(keyword, robot_name, 'control')
-        speechenginethread = threading.Thread(target=self.speechengine.start) #it must be a non blocking thread, as the speechengine goes in loop and thus blocks the server
-        try:
-            speechenginethread.start()
-            return 200
-        except Exception as e:
-            print(e)
-            return 500
-    
-    """
-    def get(self, robot_name):
-        response = None
-        while(1):  #try until the response is ready
-            if os.path.isfile('./temp/response.txt'):  #if the file exists
-                try:
-                    print("Retrieving GPT response...")
-                    with open('./temp/response.txt', 'r') as file:
-                        response = file.read()
-                    os.remove('./temp/response.txt')  #remove the file, it will be created again once a new response is needed
-                    return response, 200
-                except Exception as e:
-                    print(e)
-                    return 500
-    """
-########################################################################################################################################
 
 api.add_resource(PromptResource,f'{basePath}/<string:robot_name>')
 api.add_resource(WhisperResource,f'{whisperPath}')
@@ -238,3 +194,4 @@ api.add_resource(WhisperandGPTPromptResource,f'{whispertranspromptPath}')
 if __name__=='__main__': #the server runs locally
     
     app.run(host='127.0.0.1',port=8080,debug=True, use_reloader = False)
+
