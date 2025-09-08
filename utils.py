@@ -53,7 +53,7 @@ class Utils():
             print("Disabling autonomous life")
             self.autonomousLife.setState("disabled")
         self.posture.post.goToPosture("Stand",0.5)
-        self.dialog.setLanguage("Italian")
+        self.dialog.setLanguage("English")
         self.memory.insertData("listen","0")
         self.memory.insertData("stop","0")
         self.memory.insertData("block","0")
@@ -70,7 +70,7 @@ class Utils():
         selected_robot = self.robot.split('.')
         if selected_robot[0] == "192":
             robot_name = 'gino'
-        topicContent = "topic: ~Chat()\n language: iti\nconcept: (trigger) [{0} ascoltami ascolta]\nconcept: (stop) [ferma fermati]\nconcept: (block) [stop]\nu: (~trigger)  $listen=1\nu: (~stop) Okay $stop=1\nu: (~block) Okay $block=1".format(robot_name)
+        topicContent = "topic: ~Chat()\n language: iti\nconcept: (trigger) [{0} listen]\nconcept: (stop) [ferma fermati]\nconcept: (block) [stop]\nu: (~trigger)  $listen=1\nu: (~stop) Okay $stop=1\nu: (~block) Okay $block=1".format(robot_name)
         try:
             self.dialog.unsubscribe("dialog_chat")
         except:
@@ -107,4 +107,5 @@ class AudioStreamer():
             print("ID: {} - {}".format(i, info['name']))
             print("  Canali input: {}".format(info['maxInputChannels']))
             print("  Canali output: {}".format(info['maxOutputChannels']))
+
             print("  Sample rate: {} Hz".format(info['defaultSampleRate']))
