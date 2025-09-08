@@ -52,7 +52,7 @@ https://github.com/user-attachments/assets/7b7ac515-fc2d-4c97-ad3c-f3a99e3440ba
 - Python 3.7+
 - OpenAI Account
 - OpenAI API Key
-- naoqi SDK
+- naoqi SDK for Python 2.7
 
 Make sure to have in a Python 2.7 project directory:
 - GPT_prompt_chat_client_new.py
