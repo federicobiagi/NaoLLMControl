@@ -12,8 +12,6 @@ import socket
 import threading
 import pandas as pd
 from openai import OpenAI
-import music_yt
-from music_yt import MusicUtility
 import prompt_manager
 from prompt_manager import PromptManager
 import tiktoken
@@ -485,4 +483,5 @@ if __name__=='__main__': #il server runna localmente
     #server.send_chat_chunk('gino',"raccontami una storia in tre frasi")
 
     server.ask("ciao gino come stai?")
+
 
