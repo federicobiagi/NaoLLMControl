@@ -78,7 +78,7 @@ class GPT():
             print("Selected GPT model: {}".format(self.gpt_model))
         
         #Notifica che NAO è pronto ad ascoltare
-        self.speech.say("Sono pronto")
+        self.speech.say("I am ready")
 
 
     #ripulisce il dialogo e riattiva la vita autonoma al NAO. Metodo da usare quando si stoppa GPT.
@@ -392,4 +392,5 @@ class GPT():
 
 if __name__ == '__main__':
     Gpt = GPT("192.168.137.132", "Sei un NAO Robot di nome Gino che aiuta i bambini all'ospedale")  #solo per testing
+
     Gpt.start()
