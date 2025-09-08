@@ -221,39 +221,6 @@ class Server(object):
 
         response = self.send_request_to_model(self.chat_history)  #send the request to the model and get the response
         
-        """
-        try:
-            completion = self.client.chat.completions.create(
-            model=self.gpt_model,
-            messages= self.chat_history,  
-            temperature = 0
-            )
-        except openai.APIError as e:
-            print("OpenAI Unknown Error")
-            print(e)
-            return "Non sono riuscito a generare una risposta, mi dispiace, riavviami"
-        except openai.APIConnectionError as e:
-            print("OpenAI Connection Error")
-            print(e)
-            return "C'è stato un errore di connessione, riavviami"
-        except openai.RateLimitError as e:
-            print("Token Rate Limit Reached")
-            print(e)
-            return "Sono stanco, non riesco più a parlare, riavviami"
-
-        print("Tokens in request: {}".format(completion.usage.prompt_tokens))
-        print("Tokens in output: {}".format(completion.usage.completion_tokens))
-        print("Total tokens processed after request: {}".format(completion.usage.total_tokens))
-        
-        if len(self.chat_history) > 2: #if I'm not initializing ChatGPT
-            self.chat_history.append(
-                {
-                    "role" : "assistant",
-                    "content" : unidecode.unidecode(str(completion.choices[0].message.content))  #insert the response to the user prompt to keep track of the flow of the conversation
-
-                }
-            )
-        """
         if len(self.chat_history) > 2: #if I'm not initializing ChatGPT
             self.chat_history.append(
                 {
@@ -265,29 +232,10 @@ class Server(object):
       
         print("Chat History Length:")
         print(len(self.chat_history))
-        #if len(self.chat_history) >= 19:  #if there are at least 8 user requests (5 required for the setup + 16 user messages) then I free the chat history from older requests to avoid token limit issue
-        #    first = self.chat_history[:5]  #keep the first 5 elements for the setup
-        #    last = self.chat_history[-2:] #keep the last request
-        #    self.chat_history = first + last 
-        #    print("Chat History Length after cut: ")
-        #    print(len(self.chat_history))
 
-        #for t in self.threads_list:
-        #    t.join()
-        #while not self.que.empty():
-        #    sentiment = self.que.get()
-        
-        #if sentiment_result.done() is True:
-        #    sentiment = sentiment_result.result()
-        #else:
-        #    sentiment = '<None>'
 
         print('Response')
         print(response)
-        #response = unidecode.unidecode(str(completion.choices[0].message.content))
-        #print(sentiment + response)
-        print(response)
-        #return sentiment + response  #return gpt response to last request, extracted from the "assistant" field 
         return response
 
     def startUpGPT(self,robotname,context = " "):#initialize ChatGPT
@@ -330,10 +278,8 @@ class Server(object):
             )
             print("Llama model loaded")
 
-        
-        #self.ask('Ciao {}!'.format(self.robot_name))  #Instruction Prompt provided to ChatGPT, together with an initial greet
 
-        ##PROVO A TOGLIERE LA INITIAL USER REQUEST E PASSO DIRETTAMENTE SYSTEM E BASTA
+
         if "gpt" in self.gpt_model:
             try:
                 completion = self.client.chat.completions.create(
@@ -483,5 +429,6 @@ if __name__=='__main__': #il server runna localmente
     #server.send_chat_chunk('gino',"raccontami una storia in tre frasi")
 
     server.ask("ciao gino come stai?")
+
 
 
