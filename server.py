@@ -16,8 +16,6 @@ import music_yt
 from music_yt import MusicUtility
 import prompt_manager
 from prompt_manager import PromptManager
-import gpt_fine_tuning
-from gpt_fine_tuning import FineTuner
 import tiktoken
 import threading
 from threading import Thread
@@ -38,9 +36,6 @@ class Server(object):
         if key is None:
             raise Exception("OpenAI API Key not found")
         self.client = OpenAI(api_key=key)
-        #self.finetuner = FineTuner(self.client)
-        #self.gpt_model = self.finetuner.get_custom_model_name()
-        #self.gpt_model = 'gpt-3.5-turbo'
         self.gpt_model = 'gpt-4.1-mini'
         #self.gpt_model = 'llama'
         print("Selected model for prompting: {}".format(self.gpt_model))
@@ -514,4 +509,5 @@ if __name__=='__main__': #il server runna localmente
 
     server.startUpGPT('gino.local')
     #server.send_chat_chunk('gino',"raccontami una storia in tre frasi")
+
     server.ask("ciao gino come stai?")
