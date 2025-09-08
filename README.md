@@ -107,7 +107,10 @@ This video shows the simulation of a complete visit with the LLM-enabled control
 https://github.com/user-attachments/assets/3e5845a0-ffa0-4446-b39d-9cf07eb49843
 
 These videos show some movements performed by NAO based on the user requests:
+
 https://github.com/user-attachments/assets/a7637b8d-124d-4646-b080-62e4bd584251
+
+
 https://github.com/user-attachments/assets/0b70bb95-b72a-4010-aaa4-f94cc48ca082
 
 
